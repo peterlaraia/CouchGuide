@@ -1,0 +1,57 @@
+@import '../assets/styles/partials/_palette.scss';
+
+$banner-height: 4rem;
+
+.banner {
+    background-color: $blue-md;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+.brand {
+    height: $banner-height;
+    line-height: $banner-height;
+    color: $white_txt;
+    margin-left: #{$banner-height/2rem}rem;
+    margin-right: #{$banner-height/2rem}rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    white-space: nowrap;
+
+    flex: 1 0 auto;
+    margin-left: #{$banner-height/2rem}rem;
+
+    a {
+        text-decoration: none;
+        transition: all 0.3s linear 0s;
+
+        display: block;
+        flex-shrink: 0;
+
+        height: $banner-height;
+        line-height: $banner-height;
+        text-transform: uppercase;
+        padding-left: #{$banner-height/2rem}rem;
+        padding-right: #{$banner-height/2rem}rem;
+        cursor: pointer;
+
+        border-bottom: 4px solid transparent;
+        color: $white_txt;
+
+        &:hover,
+        &:focus,
+        &.active {
+            border-bottom: 4px solid #ff8000;
+            background-color: $blue_lg;
+        }
+    }
+}
