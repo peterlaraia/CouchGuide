@@ -4,7 +4,8 @@ import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.co
 import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'search', loadChildren: './search/search.module#SearchModule'},
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
