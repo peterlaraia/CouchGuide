@@ -1,4 +1,6 @@
-<input type="text" placeholder="search" [formControl]="queryControl"/>
+<div class="search">
+  <input type="text" placeholder="search" [formControl]="queryControl"/>
+</div>
 
 <div *ngFor="let x of (shows | async)">
   <span>{{x.id}}</span>

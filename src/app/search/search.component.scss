@@ -1,0 +1,22 @@
+@import '../../assets/styles/partials/_palette.scss';
+
+$div_height: 4rem;
+
+.search {
+
+    height: $div_height;
+    display: flex;
+
+    input {
+        border: none;
+        border-radius: 1rem;
+        outline: none;
+        background-color: $blue_lg;
+        color: $white_txt;
+        margin: auto;
+        text-align: center;
+        width: 45%;
+        height: #{$div_height/2rem}rem;
+        
+    }
+}
