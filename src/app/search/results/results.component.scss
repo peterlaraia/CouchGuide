@@ -14,14 +14,25 @@
 .result {
     color: $white_txt;
     background-color: $blue_md;
+    transition: all 0.3s linear 0.0s;
 
     height: #{$img_height + 3rem};
-    line-height: #{$img_height + 3rem};
     text-align: center;
     flex: 0 0 $img_width;
     margin-top: 1rem;
 
     border-radius: 1rem;
     box-shadow: 1px 1px 5px $blue_xl;
+
+    cursor: pointer;
+
+    .no-img {
+        height: $img_height;
+        width: $img_width;
+    }
+
+    &:hover {
+        background-color: $blue_lg;
+    }
     
 }
