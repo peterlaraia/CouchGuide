@@ -1,0 +1,6 @@
+<div class="result" *ngFor="let show of shows">
+  <img *ngIf="show.image?.medium; else noImg; let img" [src]="img" />
+  <ng-template #noImg>
+    {{show?.name}}
+  </ng-template>
+</div>

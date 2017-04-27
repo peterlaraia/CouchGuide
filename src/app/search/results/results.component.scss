@@ -1,0 +1,27 @@
+@import '../../../assets/styles/partials/_layout.scss';
+@import '../../../assets/styles/partials/_palette.scss';
+
+:host {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+
+    margin: auto;
+    width: 80%;
+    min-width: $img_width;
+}
+
+.result {
+    color: $white_txt;
+    background-color: $blue_md;
+
+    height: #{$img_height + 3rem};
+    line-height: #{$img_height + 3rem};
+    text-align: center;
+    flex: 0 0 $img_width;
+    margin-top: 1rem;
+
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px $blue_xl;
+    
+}

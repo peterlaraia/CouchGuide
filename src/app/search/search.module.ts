@@ -8,6 +8,7 @@ import { SearchComponent } from './search.component';
 import { searchRoutes } from './search.routes';
 import { SearchService } from './search.service';
 import { SearchEffects } from './store/search-effects';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { SearchEffects } from './store/search-effects';
     ReactiveFormsModule,
     RouterModule.forChild(searchRoutes)
   ],
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, ResultsComponent],
   providers: [SearchService],
   exports: [SearchComponent]
 })
