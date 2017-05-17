@@ -4,3 +4,12 @@ body {
     margin: 0;
     background-color: $blue_sm;
 }
+
+img, embed, object, video {
+    max-width: 100%;
+}
+
+nav a, button {
+    min-width: 3rem;
+    min-height: 3rem;
+}

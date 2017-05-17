@@ -19,12 +19,14 @@
     height: #{$img_height + 3rem};
     text-align: center;
     flex: 0 0 $img_width;
-    margin-top: 1rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 
     border-radius: 1rem;
     box-shadow: 1px 1px 5px $blue_xl;
 
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     .no-img {
         height: $img_height;
@@ -35,4 +37,21 @@
         background-color: $blue_lg;
     }
     
+}
+
+@media screen and (max-width: 575px) {
+    img, .no-img {
+        display: none;
+    }
+
+    .result {
+        height: 2rem;
+        overflow: hidden;
+        border-radius: 0;
+        flex: 0 0 90%;
+    }
+
+    .result-name {
+        line-height: 2rem;
+    }
 }
