@@ -1,4 +1,4 @@
-<div class="result" *ngFor="let show of shows">
+<div class="result" *ngFor="let show of shows" (click)="navigateTo(show?.id)">
   <img *ngIf="show.image?.medium; else noImg; let img" [src]="img" />
   <ng-template #noImg>
     <div class="no-img">

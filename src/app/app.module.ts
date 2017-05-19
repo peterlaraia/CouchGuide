@@ -1,3 +1,4 @@
+import { ShowComponent } from './shared/show/show.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -39,7 +40,8 @@ if (!environment.production) {
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ShowComponent
   ],
   imports: imports,
   providers: [
