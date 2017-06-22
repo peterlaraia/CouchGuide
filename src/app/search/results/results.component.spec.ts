@@ -1,25 +1,56 @@
+import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ResultsComponent } from './results.component';
+import { appRoutes } from "../../app.routes";
+import { Show } from '../../models/show';
+import { ShowComponent } from "../../shared/show/show.component";
 
 describe('ResultsComponent', () => {
   let component: ResultsComponent;
   let fixture: ComponentFixture<ResultsComponent>;
+  let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultsComponent ]
+      imports: [RouterTestingModule.withRoutes([
+        { path: 'shows/:id', component: ShowComponent },
+      ])],
+      declarations: [
+        ResultsComponent,
+        ShowComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ResultsComponent);
     component = fixture.componentInstance;
+    de = fixture.debugElement;
+    const shows: Show[] = [
+      { id: 1, name: 'show 1', image: { medium: 'src url' } },
+      { id: 2, name: 'show 2' }
+    ];
+    component.shows = shows;
+
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('view', () => {
+    it('should list some shows', () => {
+      expect(de.queryAll(By.css('.result')).length).toBe(2);
+      expect(de.queryAll(By.css('img')).length).toBe(1);
+    });
+
+    it('should navigate to a show when clicking on result', () => {
+      let spy = spyOn(de.injector.get(Router), 'navigate');
+      de.query(By.css('.result')).triggerEventHandler('click', { button: 0 });
+      expect(spy.calls.count()).toBe(1);
+      expect(spy.calls.mostRecent().args[0]).toEqual(['/shows', 1]);
+    });
   });
 });

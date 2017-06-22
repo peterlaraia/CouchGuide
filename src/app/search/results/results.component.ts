@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Show } from "../../models/show";
@@ -9,14 +9,11 @@ import { Show } from "../../models/show";
   styleUrls: ['./results.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
 
   @Input() shows: Show[];
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   navigateTo(id: number): void {
     this.router.navigate(['/shows', id]);
