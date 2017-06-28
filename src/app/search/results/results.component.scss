@@ -13,7 +13,7 @@
 
 .result {
     color: $white_txt;
-    background-color: $blue_md;
+    background-color: $color-secondary-1;
     transition: all 0.3s linear 0.0s;
 
     height: #{$img_height + 3rem};
@@ -22,7 +22,7 @@
     margin: .5rem 1rem;
 
     border-radius: 1rem;
-    box-shadow: 1px 1px 5px $blue_xl;
+    box-shadow: 1px 1px 5px $color-primary-3;
 
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -33,7 +33,7 @@
     }
 
     &:hover {
-        background-color: $blue_lg;
+        background-color: $color-primary-3;
     }
     
 }

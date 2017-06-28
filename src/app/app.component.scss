@@ -3,7 +3,7 @@
 $banner-height: 4rem;
 
 .banner {
-    background-color: $blue-md;
+    background-color: $color-secondary-1;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
     display: flex;
     justify-content: space-between;
@@ -50,8 +50,8 @@ nav {
         &:hover,
         &:focus,
         &.active {
-            border-bottom: 4px solid #ff8000;
-            background-color: $blue_lg;
+            border-bottom: 4px solid $color-primary-4;
+            background-color: $color-primary-3;
         }
     }
 }
