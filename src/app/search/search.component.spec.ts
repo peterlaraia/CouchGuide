@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { StoreModule, Store } from '@ngrx/store';
 
-import { ResultsComponent } from "./results/results.component";
+import { ResultsComponent } from './results/results.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/observable/of';
@@ -18,7 +18,7 @@ describe('SearchComponent', () => {
   let fixture: ComponentFixture<SearchComponent>;
   let de: DebugElement;
   let store: Store<any>;
-  const debounce: number = 500;
+  const debounce = 500;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -57,10 +57,10 @@ describe('SearchComponent', () => {
       ]));
       fixture.detectChanges();
       component.shows.first().subscribe((shows) => {
-        expect(shows).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }])
+        expect(shows).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
       });
       expect(storeSpy.calls.count()).toBe(1);
-    })
+    });
   });
 
   describe('search actions', () => {

@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ResultsComponent } from './results.component';
-import { appRoutes } from "../../app.routes";
+import { appRoutes } from '../../app.routes';
 import { Show } from '../../models/show';
-import { ShowComponent } from "../../shared/show/show.component";
+import { ShowComponent } from '../../show/show.component';
 
 describe('ResultsComponent', () => {
   let component: ResultsComponent;
@@ -47,7 +47,7 @@ describe('ResultsComponent', () => {
     });
 
     it('should navigate to a show when clicking on result', () => {
-      let spy = spyOn(de.injector.get(Router), 'navigate');
+      const spy = spyOn(de.injector.get(Router), 'navigate');
       de.query(By.css('.result')).triggerEventHandler('click', { button: 0 });
       expect(spy.calls.count()).toBe(1);
       expect(spy.calls.mostRecent().args[0]).toEqual(['/shows', 1]);

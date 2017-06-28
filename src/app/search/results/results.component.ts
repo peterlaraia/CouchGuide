@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Show } from "../../models/show";
+import { Show } from '../../models/show';
 
 @Component({
   selector: 'cg-results',

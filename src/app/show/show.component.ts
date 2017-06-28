@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Show } from "../models/show";
 
 @Component({
   selector: 'cg-show',
@@ -9,15 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ShowComponent implements OnInit {
 
-  id: number;
+  show: Show;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-
-    console.log(id);
-    this.id = id;
+    this.route.data.subscribe((data: {show: Show}) => {
+      this.show = data.show;
+    });
   }
 
 }

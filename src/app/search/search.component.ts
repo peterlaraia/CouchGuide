@@ -32,7 +32,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe((query: string) => {
-        console.log('query', query);
         if (query) {
           this.store.dispatch(new searchActions.Fetch(query));
         } else {

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Show } from '../models/show';
 
-interface SearchResult { 
-  score: number; 
+interface SearchResult {
+  score: number;
   show: Show;
 }
 
