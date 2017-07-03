@@ -1,17 +1,24 @@
 <h3>{{show?.name}}</h3>
 <div class="show-container">
-<div class="show-image">
-  <img *ngIf="show.image?.medium; else noImg; let img" [src]="img" />
-  <ng-template #noImg>
-    <div class="no-img">
-      No Image
-    </div>
-  </ng-template>
-</div>
 
-<div class="show-summary" [innerHTML]="show?.summary">
-</div>
-<!--<div class="schedule">
-  {{show?.schedule?.days}} @ {{show?.schedule?.time}}
-</div>-->
+  <ul class="tabs">
+    <li class="tab active-tab">Summary</li>
+    <li class="tab">Schedule</li>
+    <li class="tab">Network</li>
+  </ul>
+
+  <div class="show-image">
+    <img *ngIf="show.image?.medium; else noImg; let img" [src]="img" />
+    <ng-template #noImg>
+      <div class="no-img">
+        No Image
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="show-summary" [innerHTML]="show?.summary">
+  </div>
+  <!--<div class="schedule">
+    {{show?.schedule?.days}} @ {{show?.schedule?.time}}
+  </div>-->
 </div>
