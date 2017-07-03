@@ -19,9 +19,7 @@ li.tab {
     cursor: pointer;
     height: 48px;
     line-height: 48px;
-
-    padding-left: 2rem;
-    padding-right: 2rem;
+    width: 96px;
 
     border-radius: 8px;
     border: 1px solid $color-primary-4;
@@ -53,26 +51,4 @@ li.tab {
 .show-summary {
     flex: 0 0 auto;
     width: 55%;
-}
-
-@media screen and (max-width: 500px) {
-
-    ul.tabs {
-        width: 30%;
-        order: 2;
-        margin-right: 2rem;
-        flex-direction: column;
-    }
-    
-    .show-image {
-        display: flex;
-        justify-content: center;
-        width: 60%;
-        order: 1;
-    }
-
-    .show-summary {
-        width: 90%;
-        order: 3;
-    }
 }

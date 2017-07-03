@@ -6,7 +6,7 @@ import { Show } from '../../models/show';
 @Component({
   selector: 'cg-results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss'],
+  styleUrls: ['./results.component.scss', './results.component.small.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResultsComponent {
