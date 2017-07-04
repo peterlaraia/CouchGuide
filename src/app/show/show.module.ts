@@ -6,11 +6,13 @@ import { ShowComponent } from './show.component';
 import { showRoutes } from './show.routes';
 import { ShowService } from './show.service';
 import { ShowResolver } from "./show-resolver.service";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(showRoutes)
+    RouterModule.forChild(showRoutes),
+    SharedModule
   ],
   declarations: [ShowComponent],
   providers: [ShowService, ShowResolver]
