@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MediaQuery } from './media-query/media-query.directive';
+import { MediaQueryDirective } from './media-query/media-query.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [MediaQuery],
-  exports: [MediaQuery]
+  declarations: [MediaQueryDirective],
+  exports: [MediaQueryDirective]
 })
 export class SharedModule { }

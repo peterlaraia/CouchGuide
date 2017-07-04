@@ -7,7 +7,7 @@
     <li class="tab">Network</li>
   </ul>
 
-  <div class="show-image" *mediaQuery="'(min-width: 501px)'">
+  <div class="show-image" *ifMediaQuery="'(min-width: 501px)'">
     <img *ngIf="show?.image?.medium; else noImg; let img" [src]="img" />
     <ng-template #noImg>
       <div class="no-img">

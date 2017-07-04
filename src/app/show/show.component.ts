@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Show } from "../models/show";
+import { Show } from '../models/show';
 
 @Component({
   selector: 'cg-show',

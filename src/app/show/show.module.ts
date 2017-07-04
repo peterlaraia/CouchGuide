@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { ShowComponent } from './show.component';
 import { showRoutes } from './show.routes';
 import { ShowService } from './show.service';
-import { ShowResolver } from "./show-resolver.service";
-import { SharedModule } from "../shared/shared.module";
+import { ShowResolver } from './show-resolver.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
