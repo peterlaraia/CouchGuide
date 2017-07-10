@@ -24,12 +24,13 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^2.0.3",
     "@ngrx/store": "^2.2.2",
+    "@pevil/media-query": "^1.0.0-beta-1",
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.12"
   },
   "devDependencies": {
-    "@angular/cli": "^1.1.3",
+    "@angular/cli": "^1.2.0",
     "@angular/compiler-cli": "^4.2.5",
     "@angular/language-service": "^4.0.3",
     "@ngrx/store-devtools": "^3.2.4",
