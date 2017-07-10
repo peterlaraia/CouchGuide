@@ -1,5 +1,5 @@
 <div class="result" *ngFor="let show of shows" (click)="navigateTo(show?.id)">
-  <img *ngIf="show.image?.medium; else noImg; let img" [src]="img" />
+  <span *ifMediaQuery="'(min-width: 575px)'"><img *ngIf="show.image?.medium; else noImg; let img" [src]="img" /></span>
   <ng-template #noImg>
     <div class="no-img">
       No Image
