@@ -1,17 +1,19 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { ContentChild, Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 
 @Directive({ selector: '[pvl-tab]' })
 export class TabDirective {
     @HostBinding('class.active-tab') active: boolean = false;
-    @Input() ref: any;
+    @ContentChild(TemplateRef) ref: TemplateRef<any>;
     @Input('tabId') id: string;
 
     ngOnInit() {
-        console.log(this.id);
         this.id = this.id || 'tab-'+Math.floor(Math.random() * 1000);
         console.log('start tab')
         console.log(this.id);
-        console.log(this.ref);
+    }
+    
+    ngAfterContentInit() {
+        console.log('blurb', this.ref);
     }
 
     constructor() { }

@@ -1,11 +1,11 @@
 import { ContentChildren, Directive, Input, QueryList, ViewChildren } from '@angular/core';
-import { TabPanelComponent } from "./tab-panel.component";
+import { TabPanelDirective } from "./tab-panel.directive";
 import { TabDirective } from "./tab.directive";
 
 @Directive({ selector: '[pvl-tab-group]' })
 export class TabGroupDirective {
 
-    @Input() panel: TabPanelComponent;
+    @Input() panel: TabPanelDirective;
     @Input('initialTab') initialTabId: string;
     @ContentChildren(TabDirective) tabs: QueryList<TabDirective>;
 

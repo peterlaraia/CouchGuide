@@ -1,6 +1,6 @@
 import { Directive, EmbeddedViewRef, TemplateRef, ViewContainerRef } from '@angular/core';
 
-@Directive({ selector: '[pvl-tab-panel]' })
+@Directive({ selector: '[pvl-tab-panel]', exportAs: 'pvlTabPanel' })
 export class TabPanelDirective {
     private viewRef: EmbeddedViewRef<any>;
 
