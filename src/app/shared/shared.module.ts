@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MediaQueryModule } from '@pevil/media-query';
-import { TabDirective } from "./tabs/tab.directive";
-import { TabGroupDirective } from "./tabs/tab-group.directive";
+import { TabDirective } from './tabs/tab.directive';
+import { TabGroupDirective } from './tabs/tab-group.directive';
 import { TabPanelDirective } from './tabs/tab-panel.directive';
 
 @NgModule({

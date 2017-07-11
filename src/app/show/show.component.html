@@ -5,8 +5,7 @@
     <li pvl-tab [tabId]="'summaryTab'" class="tab">
       Summary
       <ng-template>
-        <div class="show-summary">
-          {{show?.summary}}
+        <div class="show-summary" [innerHtml]="show?.summary">
         </div>
       </ng-template>
     </li>
@@ -32,7 +31,7 @@
     <img *ngIf="show?.image?.medium; else noImg; let img" [src]="img" />
     <ng-template #noImg>
       <div class="no-img">
-        No Image {{show}}
+        No Image
       </div>
     </ng-template>
   </div>

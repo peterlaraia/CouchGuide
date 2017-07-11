@@ -1,51 +1,51 @@
-import { ContentChildren, Directive, Input, QueryList, ViewChildren } from '@angular/core';
-import { TabPanelDirective } from "./tab-panel.directive";
-import { TabDirective } from "./tab.directive";
+import {
+    AfterContentInit,
+    ContentChildren,
+    Directive,
+    Input,
+    OnDestroy,
+    QueryList,
+    ViewChildren
+} from '@angular/core';
 
-@Directive({ selector: '[pvl-tab-group]' })
-export class TabGroupDirective {
+import { Subscription } from 'rxjs/Subscription';
+import { TabDirective } from './tab.directive';
+import { TabPanelDirective } from './tab-panel.directive';
+import { TabStateService } from './tab-state.service';
+
+@Directive({ selector: '[pvl-tab-group]', providers: [TabStateService] })
+export class TabGroupDirective implements AfterContentInit, OnDestroy {
 
     @Input() panel: TabPanelDirective;
     @Input('initialTab') initialTabId: string;
     @ContentChildren(TabDirective) tabs: QueryList<TabDirective>;
 
     private activeTab: TabDirective;
+    private stateSub: Subscription;
+
+    constructor(private tabState: TabStateService) { }
 
     ngAfterContentInit() {
-        console.log('start tabgroup');
-        console.log(this.panel);
-        console.log('withtabs', this.tabs)
-        console.log(this.tabs.toArray())
         if (!this.idsAreUnique(this.tabs.map((tab: TabDirective) => tab.id))) {
             console.warn('tab ids must be unique!');
         }
-        this.setActiveTab(this.initialTabId || this.tabs.first.id);
+        this.stateSub = this.tabState.activeTab.subscribe(this.setActiveTab.bind(this));
+        this.tabState.initial(this.initialTabId || this.tabs.first.id);
     }
 
-    setActiveTab(id: string) {
-        if (this.activeTab) {
-            if (this.activeTab.id === id) {
-                return;
-            }
-            this.clearActiveTab();
+    setActiveTab (id: string) {
+        if (this.activeTab && this.activeTab.id === id) {
+            return;
         }
-        const tab: TabDirective = this.tabs.find((tab: TabDirective) => tab.id === id);
-        tab.active = true;
+        const newTab: TabDirective = this.tabs.find((tab: TabDirective) => tab.id === id);
 
-        this.panel.swapInTemplate(tab.ref);
-        this.activeTab = tab;
+        this.panel.swapInTemplate(newTab.ref);
+        this.activeTab = newTab;
     }
-
-    clearActiveTab(): void {
-        this.activeTab.active = false;
-        this.activeTab = undefined;
-    }
-
-
 
     idsAreUnique(ids: string[]): boolean {
-        let idMap: any = {};
-        for (let id of ids) {
+        const idMap: any = {};
+        for (const id of ids) {
             if (idMap[id]) {
                 return false;
             }
@@ -54,6 +54,9 @@ export class TabGroupDirective {
         return true;
     }
 
-
-    constructor() { }
+    ngOnDestroy() {
+        if (this.stateSub) {
+            this.stateSub.unsubscribe();
+        }
+    }
 }

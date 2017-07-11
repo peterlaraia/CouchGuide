@@ -8,7 +8,7 @@ import { ResultsComponent } from './results/results.component';
 import { SearchComponent } from './search.component';
 import { searchRoutes } from './search.routes';
 import { SearchService } from './search.service';
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
 import { SearchEffects } from './store/search-effects';
 
 @NgModule({

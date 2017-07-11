@@ -1,20 +1,42 @@
-import { ContentChild, Directive, HostBinding, Input, TemplateRef } from '@angular/core';
+import {
+    ContentChild,
+    Directive,
+    EventEmitter,
+    HostBinding,
+    HostListener,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    TemplateRef
+} from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+import { TabStateService } from './tab-state.service';
 
 @Directive({ selector: '[pvl-tab]' })
-export class TabDirective {
-    @HostBinding('class.active-tab') active: boolean = false;
+export class TabDirective implements OnInit, OnDestroy {
+    @HostBinding('class.active-tab') active = false;
     @ContentChild(TemplateRef) ref: TemplateRef<any>;
     @Input('tabId') id: string;
 
+    private stateSub: Subscription;
+
+    constructor(private tabState: TabStateService) { }
+
     ngOnInit() {
-        this.id = this.id || 'tab-'+Math.floor(Math.random() * 1000);
-        console.log('start tab')
-        console.log(this.id);
-    }
-    
-    ngAfterContentInit() {
-        console.log('blurb', this.ref);
+        this.id = this.id || 'tab-' + Math.floor(Math.random() * 1000);
+        this.stateSub = this.tabState.activeTab.subscribe((id: string) => this.active = this.id === id);
     }
 
-    constructor() { }
+    @HostListener('click')
+    onClick() {
+        this.tabState.update(this.id);
+    }
+
+    ngOnDestroy() {
+        if (this.stateSub) {
+            this.stateSub.unsubscribe();
+        }
+    }
 }
