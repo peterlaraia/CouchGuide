@@ -1,10 +1,10 @@
 <h3>{{show?.name}}</h3>
 <div class="show-container">
 
-  <ul class="tabs">
-    <li class="tab active-tab">Summary</li>
-    <li class="tab">Schedule</li>
-    <li class="tab">Network</li>
+  <ul class="tabs" pvl-tab-group [panel]="showPanel">
+    <li pvl-tab [ref]="summary" [tabId]="'summaryTab'" class="tab">Summary</li>
+    <li pvl-tab [ref]="schedule" [tabId]="'scheduleTab'" class="tab">Schedule</li>
+    <li pvl-tab [ref]="network" [tabId]="networkTab" class="tab">Network</li>
   </ul>
 
   <div class="show-image" *ifMediaQuery="'(min-width: 501px)'">
@@ -12,10 +12,29 @@
     <ng-template #noImg>
       <div class="no-img">
         No Image
+        {{show}}
       </div>
     </ng-template>
   </div>
 
-  <div class="show-summary" [innerHTML]="show?.summary">
-  </div>
+  <pvl-tab-panel #showPanel>
+  </pvl-tab-panel>
+
+  <ng-template #summary>
+    <div class="show-summary" [innerHTML]="show?.summary">
+    </div>
+  </ng-template>
+
+  <ng-template #schedule>
+    <div class="show-schedule">
+      Schedule
+    </div>
+  </ng-template>
+
+  <ng-template #network>
+    <div class="show-network">
+      Network
+    </div>
+  </ng-template>
+
 </div>
