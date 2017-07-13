@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MediaQueryModule } from '@pevil/media-query';
-import { TabDirective } from './tabs/tab.directive';
-import { TabGroupDirective } from './tabs/tab-group.directive';
-import { TabPanelDirective } from './tabs/tab-panel.directive';
+import { NgTabModule } from '@pevil/ng-tabs';
 
 @NgModule({
   imports: [
-    CommonModule, MediaQueryModule
+    CommonModule, MediaQueryModule, NgTabModule
   ],
-  declarations: [TabGroupDirective, TabDirective, TabPanelDirective],
-  exports: [MediaQueryModule, TabGroupDirective, TabDirective, TabPanelDirective]
+  declarations: [],
+  exports: [MediaQueryModule, NgTabModule]
 })
 export class SharedModule { }

@@ -25,6 +25,7 @@
     "@ngrx/effects": "^2.0.3",
     "@ngrx/store": "^2.2.2",
     "@pevil/media-query": "^1.0.0",
+    "@pevil/ng-tabs": "^1.0.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.12"

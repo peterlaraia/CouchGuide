@@ -1,15 +1,15 @@
 <h3>{{show?.name}}</h3>
 <div class="show-container">
 
-  <ul class="tabs" pvl-tab-group [panel]="showPanel">
-    <li pvl-tab [tabId]="'summaryTab'" class="tab">
+  <ul class="tabs" pvlTabGroup [tabPanel]="showPanel">
+    <li pvlTab [tabId]="'summaryTab'" class="tab">
       Summary
       <ng-template>
         <div class="show-summary" [innerHtml]="show?.summary">
         </div>
       </ng-template>
     </li>
-    <li pvl-tab [tabId]="'scheduleTab'" class="tab">
+    <li pvlTab [tabId]="'scheduleTab'" class="tab">
       Schedule
       <ng-template>
         <div class="show-schedule">
@@ -17,7 +17,7 @@
         </div>
       </ng-template>
     </li>
-    <li pvl-tab [tabId]="'networkTab'" class="tab">
+    <li pvlTab [tabId]="'networkTab'" class="tab">
       Network
       <ng-template>
         <div class="show-network">
@@ -36,5 +36,5 @@
     </ng-template>
   </div>
   
-  <ng-template pvl-tab-panel #showPanel="pvlTabPanel"></ng-template>
+  <ng-template pvlTabPanel #showPanel="pvlTabPanel"></ng-template>
 </div>
