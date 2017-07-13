@@ -2,29 +2,36 @@
 <div class="show-container">
 
   <ul class="tabs" pvlTabGroup [tabPanel]="showPanel">
+
     <li pvlTab [tabId]="'summaryTab'" class="tab">
       Summary
       <ng-template>
-        <div class="show-summary" [innerHtml]="show?.summary">
-        </div>
+        <span *ngIf="show?.summary; else noSummary; let summary" class="show-summary" [innerHtml]="summary">
+        </span>
+        <ng-template #noSummary><div [style.text-align]="'center'">No summary provided.</div></ng-template>
       </ng-template>
     </li>
+
+
     <li pvlTab [tabId]="'scheduleTab'" class="tab">
       Schedule
       <ng-template>
-        <div class="show-schedule">
-          Schedule
-        </div>
+        <cg-schedule 
+        [time]="show?.schedule?.time" 
+        [days]="show?.schedule?.days" 
+        [timezone]="show?.network?.country?.timezone"></cg-schedule>
       </ng-template>
     </li>
-    <li pvlTab [tabId]="'networkTab'" class="tab">
-      Network
+
+
+    <li pvlTab [tabId]="'infoTab'" class="tab">
+      Info
       <ng-template>
-        <div class="show-network">
-          Network
-        </div>
+        <cg-misc-info [runtime]="show?.runtime" [genres]="show?.genres" [network]="show?.network"></cg-misc-info>
       </ng-template>
     </li>
+
+
   </ul>
 
   <div class="show-image" *ifMediaQuery="'(min-width: 501px)'">
@@ -36,5 +43,7 @@
     </ng-template>
   </div>
   
-  <ng-template pvlTabPanel #showPanel="pvlTabPanel"></ng-template>
+  <div class="panel-container">
+    <ng-template pvlTabPanel #showPanel="pvlTabPanel"></ng-template>
+  </div>
 </div>

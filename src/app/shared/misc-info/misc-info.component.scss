@@ -1,0 +1,47 @@
+$height: 48px;
+$left-width: 30%;
+$right-width: 70%;
+$font-sz: 1.2rem;
+
+$color-left: #939393;
+$color-right: #CECECE;
+
+.runtime, .genres {
+    display: flex;
+}
+
+.handshake {
+    height: $height;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-sz;
+
+    &.left-hand {
+        background-color: $color-left;
+        position: relative;
+        color: black;
+        font-weight: bold;
+        width: $left-width;
+
+        &:after {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            left: 100%;
+            top: 0;
+            border: $height/2 solid transparent;
+            border-left: $height/2 solid $color-left;
+        }
+    }
+
+    &.right-hand {
+        background-color: $color-right;
+        padding-left: $height/2;
+        color: black;
+        overflow: hidden;
+        width: $right-width;
+    }
+}

@@ -1,0 +1,39 @@
+$day-height: 32px;
+$time-height: 48px;
+
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.week {
+    display: flex;
+    justify-content: space-around;
+}
+
+.day-of-week {
+    text-align: center;
+    width: 14%;
+    opacity: .5;
+    height: $day-height + $time-height;
+
+    &.on-schedule {
+        opacity: 1;
+    }
+}
+
+.day {
+    height: $day-height;
+    line-height: $day-height;
+}
+
+.time {
+    height: $time-height;
+    line-height: $time-height;
+}
+
+.disclaimer {
+    font-size: .9rem;
+    border-top: 1px solid white;
+    padding-top: 8px;
+}
