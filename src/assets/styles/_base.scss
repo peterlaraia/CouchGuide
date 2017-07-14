@@ -1,4 +1,5 @@
-@import 'partials/_palette.scss';
+@import 'partials/palette';
+@import 'partials/buttons';
 
 body {
     margin: 0;
@@ -11,11 +12,6 @@ img, embed, object, video {
 }
 
 nav a, button {
-    min-width: 3rem;
-    min-height: 3rem;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
+    min-width: 48px;
+    min-height: 48px;
 }

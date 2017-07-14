@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.redirect {
+    width: 300px;
+}
+
+@media screen and (max-width: 575px)  {
+    .redirect  {
+        width: 200px;
+    }
+}
