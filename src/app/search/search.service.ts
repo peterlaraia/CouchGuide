@@ -20,7 +20,7 @@ export class SearchService {
     const params: URLSearchParams = new URLSearchParams();
     params.append('q', query);
     const options: RequestOptionsArgs = { search: params };
-    return this.http.get(`${environment.maze_url}/search/shows`, options)
+    return this.http.get(`${environment.maze_api_url}/search/shows`, options)
       .map((res: Response) => res.json())
       .map((results: SearchResult[]) => results.map((result: SearchResult) => result.show));
   }

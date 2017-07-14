@@ -6,6 +6,11 @@
   <div class="handshake left-hand">Genres</div>
   <div class="handshake right-hand">{{genres.join(', ')}}</div>
 </div>
-<div class="network">
-  {{network?.name}}...{{network?.country?.name}}
+<div class="location">
+  <a [href]="networkUrl(network?.id, network?.name)">
+    <div class="network">
+      <div class="flag" [style.background]="flagLinkUrl(network?.country?.code)" [style.background-size]="'contain'"></div>
+      {{network?.name}}
+    </div>
+  </a>
 </div>

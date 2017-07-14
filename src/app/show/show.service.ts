@@ -12,7 +12,7 @@ export class ShowService {
   constructor(private http: Http) { }
 
   getShow(id: number): Observable<Show> {
-    return this.http.get(`${environment.maze_url}/shows/${id}`)
+    return this.http.get(`${environment.maze_api_url}/shows/${id}`)
       .map((res: Response) => res.json());
   }
 
