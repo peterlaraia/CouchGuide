@@ -11,6 +11,7 @@ import { Network } from "../../models/network";
 export class MiscInfoComponent {
 
   readonly minutesPerHour: number = 60;
+  imgLoaded = false;
 
   @Input() runtime: number; //in minutes
   @Input() genres: string[];

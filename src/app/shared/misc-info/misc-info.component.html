@@ -7,9 +7,9 @@
   <div class="handshake right-hand">{{genres.join(', ')}}</div>
 </div>
 <div class="location">
-  <a [href]="networkUrl(network?.id, network?.name)">
+  <a [href]="networkUrl(network?.id, network?.name)" [hidden]="!imgLoaded">
     <div class="network">
-      <div class="flag" [style.background]="flagLinkUrl(network?.country?.code)" [style.background-size]="'contain'"></div>
+      <img class="flag" (load)="imgLoaded=true" [src]="flagAsset(network?.country?.code)" [style.background-size]="'contain'" />
       {{network?.name}}
     </div>
   </a>
