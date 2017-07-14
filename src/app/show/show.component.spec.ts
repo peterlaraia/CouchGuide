@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { NgTabModule } from '@pevil/ng-tabs';
 import { ShowComponent } from './show.component';
-import { ShowModule } from "./show.module";
+import { ShowModule } from './show.module';
 
 describe('ShowComponent', () => {
   let component: ShowComponent;

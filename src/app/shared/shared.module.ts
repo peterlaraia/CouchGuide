@@ -13,10 +13,10 @@ import { ScheduleComponent } from './schedule/schedule.component';
   ],
   declarations: [ScheduleComponent, HandshakeComponent, MiscInfoComponent],
   exports: [
-    MediaQueryModule, 
-    NgTabModule, 
-    
-    MiscInfoComponent, 
+    MediaQueryModule,
+    NgTabModule,
+
+    MiscInfoComponent,
     ScheduleComponent]
 })
 export class SharedModule { }

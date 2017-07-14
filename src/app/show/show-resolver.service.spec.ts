@@ -13,7 +13,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ShowResolver } from './show-resolver.service';
-import { ShowService } from "./show.service";
+import { ShowService } from './show.service';
 
 describe('ShowResolver', () => {
   beforeEach(() => {

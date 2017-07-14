@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MiscInfoComponent } from './misc-info.component';
-import { HandshakeComponent } from "../handshake.component";
+import { HandshakeComponent } from '../handshake.component';
 
 describe('MiscInfoComponent', () => {
   let component: MiscInfoComponent;
@@ -42,7 +42,7 @@ describe('MiscInfoComponent', () => {
 
     it('should display runtime 0 as 0m', () => {
       expect(component.displayRuntime(0)).toBe('0m');
-    })
+    });
 
     it('should display data unavailable message if no runtime given', () => {
       expect(component.displayRuntime(null)).toBe('Data unavailable');
@@ -77,7 +77,7 @@ describe('MiscInfoComponent', () => {
       expect(component.networkUrl(null, null)).toContain('/networks/null/null');
       expect(component.networkUrl(undefined, undefined)).toContain('/networks/undefined/undefined');
     });
-  })
+  });
 
   it('should be created', () => {
     expect(component).toBeTruthy();

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
-import { Network } from "../../models/network";
+import { Network } from '../../models/network';
 
 @Component({
   selector: 'cg-misc-info',
@@ -11,9 +11,9 @@ import { Network } from "../../models/network";
 })
 export class MiscInfoComponent {
 
-  readonly minutesPerHour: number = 60;
+  readonly minutesPerHour = 60;
 
-  @Input() runtime: number; //in minutes
+  @Input() runtime: number; // in minutes
   @Input() genres: string[];
   @Input() network: Network;
 
@@ -23,12 +23,12 @@ export class MiscInfoComponent {
     } else if (runtime === undefined || runtime === null) {
       return 'Data unavailable';
     }
-    let {hours, minutes} = {
-      hours: Math.floor(runtime/this.minutesPerHour),
+    const {hours, minutes} = {
+      hours: Math.floor(runtime / this.minutesPerHour),
       minutes: runtime % this.minutesPerHour
     };
-    let hourString = hours ? `${hours}h` : '';
-    let minuteString = minutes ? `${minutes}m` : '';
+    const hourString = hours ? `${hours}h` : '';
+    const minuteString = minutes ? `${minutes}m` : '';
     return `${hourString} ${minuteString}`.trim();
   }
 
@@ -37,6 +37,6 @@ export class MiscInfoComponent {
   }
 
   networkUrl(id: number, name: string): string {
-    return `${environment.maze_web_url}/networks/${id}/${name && name.toLocaleLowerCase().split(' ').join('-')}`
+    return `${environment.maze_web_url}/networks/${id}/${name && name.toLocaleLowerCase().split(' ').join('-')}`;
   }
 }
