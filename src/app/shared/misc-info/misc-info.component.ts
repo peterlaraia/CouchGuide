@@ -6,12 +6,11 @@ import { Network } from "../../models/network";
 @Component({
   selector: 'cg-misc-info',
   templateUrl: './misc-info.component.html',
-  styleUrls: ['./misc-info.component.scss', './misc-info.component.small.scss']
+  styleUrls: ['./misc-info.component.scss']
 })
 export class MiscInfoComponent {
 
   readonly minutesPerHour: number = 60;
-  imgLoaded = false;
 
   @Input() runtime: number; //in minutes
   @Input() genres: string[];
