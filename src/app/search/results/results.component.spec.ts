@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ResultsComponent } from './results.component';
 import { appRoutes } from '../../app.routes';
 import { Show } from '../../models/show';
+import { SharedModule } from '../../shared/shared.module';
 import { ShowComponent } from '../../show/show.component';
 
 describe('ResultsComponent', () => {
@@ -16,9 +17,12 @@ describe('ResultsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([
-        { path: 'shows/:id', component: ShowComponent },
-      ])],
+      imports: [
+        RouterTestingModule.withRoutes([
+          { path: 'shows/:id', component: ShowComponent },
+        ]),
+        SharedModule
+      ],
       declarations: [
         ResultsComponent,
         ShowComponent

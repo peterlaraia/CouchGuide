@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/observable/of';
 import { SearchComponent } from './search.component';
+import { SharedModule } from '../shared/shared.module';
 import * as searchActions from './store/search-actions';
 import { reducer as searchReducer } from './store/search-reducer';
 
@@ -25,7 +26,8 @@ describe('SearchComponent', () => {
       imports: [
         StoreModule.provideStore({ search: searchReducer }),
         ReactiveFormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        SharedModule
       ],
       declarations: [
         SearchComponent,

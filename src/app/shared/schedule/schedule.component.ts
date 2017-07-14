@@ -16,8 +16,8 @@ export class ScheduleComponent {
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
   ];
 
-  isDayInSchedule(day: string, schedule: string[]) {
-    return schedule.indexOf(day) >= 0;
+  isDayInSchedule(day: string, schedule: string[]): boolean {
+    return schedule && schedule.indexOf(day) >= 0;
   }
 
 }

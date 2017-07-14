@@ -1,16 +1,8 @@
-<!--<div class="runtime">
-  <div class="handshake left-hand">Runtime</div>
-  <div class="handshake right-hand">{{displayRuntime(runtime)}}</div>
-</div>
-<div class="genres">
-  <div class="handshake left-hand">Genres</div>
-  <div class="handshake right-hand">{{genres.join(', ')}}</div>
-</div>-->
 <cg-handshake class="runtime">
   <span left>Runtime</span><span right>{{displayRuntime(runtime)}}</span>
 </cg-handshake>
 <cg-handshake class="genres">
-  <span left>Genres</span><span right>{{genres.join(', ')}}</span>
+  <span left>Genres</span><span right>{{genres?.join(', ')}}</span>
 </cg-handshake>
 <cg-handshake>
   <span left>Network</span>
@@ -19,11 +11,3 @@
   </span>
   <img class="flag" [src]="flagAsset(network?.country?.code)" right />
 </cg-handshake>
-<!--<div class="location">
-  <a [href]="networkUrl(network?.id, network?.name)" [hidden]="!imgLoaded">
-    <div class="network">
-      <img class="flag" (load)="imgLoaded=true" [src]="flagAsset(network?.country?.code)" [style.background-size]="'contain'" />
-      {{network?.name}}
-    </div>
-  </a>
-</div>-->
