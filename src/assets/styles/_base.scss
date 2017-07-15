@@ -2,6 +2,16 @@
 @import 'partials/buttons';
 @import 'partials/reset';
 
+html, body {
+    height: 100%;
+}
+
+cg-root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     margin: 0;
     background-color: $color-primary-0;
@@ -15,4 +25,8 @@ img, embed, object, video {
 nav a, button {
     min-width: 48px;
     min-height: 48px;
+}
+
+cg-root > router-outlet + * {
+    flex: 1;
 }

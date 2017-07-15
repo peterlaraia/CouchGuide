@@ -5,7 +5,7 @@ import { Show } from '../models/show';
 @Component({
   selector: 'cg-show',
   templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss', './show.component.small.scss'],
+  styleUrls: ['./show.component.scss', './show.component.small.scss', './show.component.large.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShowComponent implements OnInit {

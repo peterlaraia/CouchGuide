@@ -7,6 +7,7 @@ import { HandshakeComponent } from './handshake.component';
 import { MiscInfoComponent } from './misc-info/misc-info.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 
+
 @NgModule({
   imports: [
     CommonModule, MediaQueryModule, NgTabModule
