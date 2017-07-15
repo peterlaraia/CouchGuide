@@ -1,11 +1,7 @@
 @media screen and (max-width: 500px) {
 
-    ul.tabs {
-        order: 1;
-    }
-
-    .panel-container {
-        width: 90%;
-        order: 2;
+    :host {
+        width: auto;
+        max-width: 100%;
     }
 }

@@ -6,9 +6,19 @@
     <li pvlTab [tabId]="'summaryTab'" class="tab">
       Summary
       <ng-template>
-        <span *ngIf="show?.summary; else noSummary; let summary" class="show-summary" [innerHtml]="summary">
-        </span>
-        <ng-template #noSummary><div [style.text-align]="'center'">No summary provided.</div></ng-template>
+        <div class="show-image" *ifMediaQuery="'(min-width: 725px)'">
+          <img *ngIf="show?.image?.medium; else noImg; let img" [src]="img" />
+          <ng-template #noImg>
+            <div class="no-img">
+              No Image
+            </div>
+          </ng-template>
+        </div>
+        <div *ngIf="show?.summary; else noSummary; let summary" class="show-summary" [innerHtml]="summary">
+        </div>
+        <ng-template #noSummary>
+          <div [style.text-align]="'center'">No summary provided.</div>
+        </ng-template>
       </ng-template>
     </li>
 
@@ -16,10 +26,7 @@
     <li pvlTab [tabId]="'scheduleTab'" class="tab">
       Schedule
       <ng-template>
-        <cg-schedule 
-        [time]="show?.schedule?.time" 
-        [days]="show?.schedule?.days" 
-        [timezone]="show?.network?.country?.timezone"></cg-schedule>
+        <cg-schedule [time]="show?.schedule?.time" [days]="show?.schedule?.days" [timezone]="show?.network?.country?.timezone"></cg-schedule>
       </ng-template>
     </li>
 
@@ -34,15 +41,6 @@
 
   </ul>
 
-  <div class="show-image" *ifMediaQuery="'(min-width: 501px)'">
-    <img *ngIf="show?.image?.medium; else noImg; let img" [src]="img" />
-    <ng-template #noImg>
-      <div class="no-img">
-        No Image
-      </div>
-    </ng-template>
-  </div>
-  
   <div class="panel-container">
     <ng-template pvlTabPanel #showPanel="pvlTabPanel"></ng-template>
   </div>
