@@ -27,7 +27,15 @@ describe('ShowResolver', () => {
     });
   });
 
-  it('should be created', inject([ShowResolver], (service: ShowResolver) => {
-    expect(service).toBeTruthy();
-  }));
+  describe('resolve()', () => {
+    it('should get a show', inject([ShowResolver, ShowService], (service: ShowResolver, showSvc: ShowService) => {
+      const spy = spyOn(showSvc, 'getShow');
+      const routes: any = {
+        params: { id: 255}
+      };
+      service.resolve(routes, null);
+      expect(spy.calls.count()).toBe(1);
+      expect(spy.calls.mostRecent().args[0]).toBe(255);
+    }));
+  });
 });

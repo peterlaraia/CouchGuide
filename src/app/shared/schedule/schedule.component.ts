@@ -17,7 +17,9 @@ export class ScheduleComponent {
   ];
 
   isDayInSchedule(day: string, schedule: string[]): boolean {
-    return schedule && schedule.indexOf(day) >= 0;
+    return schedule && day &&
+      schedule.map((scheduleDay: string) => scheduleDay.toLocaleLowerCase())
+        .indexOf(day.toLocaleLowerCase()) >= 0;
   }
 
 }

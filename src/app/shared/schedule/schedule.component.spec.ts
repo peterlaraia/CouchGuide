@@ -19,6 +19,22 @@ describe('ScheduleComponent', () => {
     fixture.detectChanges();
   });
 
+  describe('isDayInSchedule()', () => {
+    it('should indicate day is in schedule', () => {
+      expect(component.isDayInSchedule('Monday', ['Monday', 'Tuesday'])).toBeTruthy();
+      expect(component.isDayInSchedule('Monday', ['monday', 'tuesday', 'wednesday']));
+      expect(component.isDayInSchedule('Thursday', ['Thursday'])).toBeTruthy();
+    });
+
+    it('should indicate day is not in schedule', () => {
+      expect(component.isDayInSchedule('Sunday', ['Monday'])).toBeFalsy();
+      expect(component.isDayInSchedule('Tuesday', ['Monday', 'Wednesday', 'Thursday']));
+
+      expect(component.isDayInSchedule('Mon', null)).toBeFalsy();
+      expect(component.isDayInSchedule(null, ['Friday'])).toBeFalsy();
+    });
+  });
+
   it('should be created', () => {
     expect(component).toBeTruthy();
   });

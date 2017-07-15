@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { HomeComponent } from './home.component';
@@ -18,10 +19,16 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('redirectToSearch()', () => {
+    it('should navigate to the search route', () => {
+      const router: Router = fixture.debugElement.injector.get(Router);
+      const spy = spyOn(router, 'navigate');
+      component.redirectToSearch();
+
+      expect(spy.calls.count()).toBe(1);
+      expect(spy.calls.mostRecent().args[0]).toEqual(['/search']);
+    });
   });
 });
