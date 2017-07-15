@@ -1,6 +1,8 @@
 @import '../assets/styles/partials/_palette.scss';
 
 $banner-height: 4rem;
+$padding-x: 32px;
+$nav-border-sz: 4px;
 
 .banner {
     background-color: $color-secondary-1;
@@ -12,13 +14,15 @@ $banner-height: 4rem;
 }
 
 .brand {
-    height: $banner-height;
-    line-height: $banner-height;
     color: $white_txt;
-    margin-left: #{$banner-height/2rem}rem;
-    margin-right: #{$banner-height/2rem}rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: $padding-x;
+    padding-right: $padding-x;
     font-size: 1.5rem;
     font-weight: bold;
+    border-bottom: $nav-border-sz solid transparent;
 }
 
 nav {
@@ -34,23 +38,23 @@ nav {
         text-decoration: none;
         transition: all 0.3s linear 0s;
 
-        display: block;
-        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        height: $banner-height;
-        line-height: $banner-height;
+        padding-left: $padding-x;
+        padding-right: $padding-x;
+
         text-transform: uppercase;
-        padding-left: #{$banner-height/2rem}rem;
-        padding-right: #{$banner-height/2rem}rem;
         cursor: pointer;
 
-        border-bottom: 4px solid transparent;
+        border-bottom: $nav-border-sz solid transparent;
         color: $white_txt;
 
         &:hover,
         &:focus,
         &.active {
-            border-bottom: 4px solid $color-primary-4;
+            border-bottom: $nav-border-sz solid $color-primary-4;
             background-color: $color-primary-3;
         }
     }
@@ -71,5 +75,11 @@ footer {
     nav {
         justify-content: center;
         margin-left: 0;
+
+        a {
+            padding-left: $padding-x/2;
+            padding-right: $padding-x/2;
+            font-size: 14px; 
+        }
     }
 }

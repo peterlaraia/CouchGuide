@@ -30,3 +30,9 @@ nav a, button {
 cg-root > router-outlet + * {
     flex: 1;
 }
+
+@media screen and (max-width: 575px) {
+    nav a {
+        min-height: 40px;
+    }
+}

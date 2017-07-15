@@ -13,7 +13,7 @@ import * as searchActions from './store/search-actions';
 @Component({
   selector: 'cg-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['./search.component.scss', './search.component.small.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit, OnDestroy {

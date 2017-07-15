@@ -1,7 +1,7 @@
-<h3 [style.width]="'100%'" [style.text-align]="'center'">Search for a show</h3>
+<h3>Search for a show</h3>
 
 <div class="search">
-  <input type="text" placeholder="search" [formControl]="queryControl"/>
+  <input type="text" placeholder="search" [formControl]="queryControl" cgClearPlaceholder/>
 </div>
 
 <cg-results [shows]="shows | async"></cg-results>
