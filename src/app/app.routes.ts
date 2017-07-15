@@ -8,6 +8,6 @@ export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'search', loadChildren: './search/search.module#SearchModule'},
     { path: 'shows/:id', loadChildren: './show/show.module#ShowModule'},
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/search', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

@@ -1,5 +1,5 @@
 <header class="banner">
-  <div class="brand">CouchGuide</div>
+  <a href="/" class="clean-link"><div class="brand">CouchGuide</div></a>
 
   <nav>
     <a routerLink="/home" routerLinkActive="active">Home</a>
@@ -10,4 +10,4 @@
 <router-outlet></router-outlet>
 
 
-<footer>Powered by <a href="http://www.tvmaze.com/">TVMaze</a></footer>
+<footer>Powered by &nbsp;<a href="http://www.tvmaze.com/" [style.color]="'inherit'">TVMaze</a></footer>
