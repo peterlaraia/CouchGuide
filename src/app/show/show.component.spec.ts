@@ -40,4 +40,15 @@ describe('ShowComponent', () => {
       });
     });
   });
+
+  describe('isCancelled', () => {
+    it('should be cancelled', () => {
+      expect(component.showCancelled('Ended')).toBeTruthy();
+    });
+
+    it('should not be cancelled', () => {
+      expect(component.showCancelled('Running')).toBeFalsy();
+      expect(component.showCancelled('To Be Determined')).toBeFalsy();
+    });
+  });
 });

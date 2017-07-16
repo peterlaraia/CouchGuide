@@ -69,6 +69,10 @@ describe('MiscInfoComponent', () => {
       expect(component.networkUrl(3, 'abc')).toContain('/networks/3/abc');
     });
 
+    it('should return a link to a webchannel', () => {
+      expect(component.networkUrl(1, 'Netflix', true)).toContain('/webchannels/1/netflix');
+    });
+
     it('should replace spaces with hyphens in network names', () => {
       expect(component.networkUrl(5, 'The CW')).toContain('/networks/5/the-cw');
     });
