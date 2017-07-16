@@ -3,8 +3,8 @@ import { Http, Response} from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Show } from '../models/show';
-import { environment } from '../../environments/environment';
+import { Show } from '../../models/show';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ShowService {
