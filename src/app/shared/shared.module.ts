@@ -18,6 +18,7 @@ import { ClearPlaceholderDirective } from './clear-placeholder.directive';
     MediaQueryModule,
     NgTabModule,
 
+    HandshakeComponent,
     MiscInfoComponent,
     ScheduleComponent,
 

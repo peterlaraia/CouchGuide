@@ -7,7 +7,7 @@
 <cg-handshake>
   <span left>Network</span>
   <span right *ngIf="network; else noNetwork">
-    <a [href]="networkUrl(network?.id, network?.name)">{{network?.name}}</a>
+    <a [href]="networkUrl(network?.id, network?.name, isWebchannel)">{{network?.name}}</a>
   </span>
   <img *ngIf="network" class="flag" [src]="flagAsset(network?.country?.code)" right />
   <ng-template #noNetwork><span right>No network data found</span></ng-template>

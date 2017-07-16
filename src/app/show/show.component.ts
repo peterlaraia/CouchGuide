@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { ShowStatus } from "../enums/show-status";
 import { Show } from '../models/show';
 
 @Component({
@@ -19,5 +21,9 @@ export class ShowComponent implements OnInit {
       this.show = data.show;
     });
   }
+
+  showCancelled(status: string) {
+    return status === ShowStatus.ENDED;
+  } 
 
 }

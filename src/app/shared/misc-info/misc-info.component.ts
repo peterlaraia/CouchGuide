@@ -16,6 +16,7 @@ export class MiscInfoComponent {
   @Input() runtime: number; // in minutes
   @Input() genres: string[];
   @Input() network: Network;
+  @Input() isWebchannel: boolean;
 
   displayRuntime(runtime: number): string {
     if (runtime === 0) {
@@ -36,7 +37,7 @@ export class MiscInfoComponent {
     return `assets/img/flags/${countryCode && countryCode.toLocaleLowerCase()}.svg`;
   }
 
-  networkUrl(id: number, name: string): string {
-    return `${environment.maze_web_url}/networks/${id}/${name && name.toLocaleLowerCase().split(' ').join('-')}`;
+  networkUrl(id: number, name: string, webChannel?: boolean): string {
+    return `${environment.maze_web_url}/${webChannel ? 'webchannels' : 'networks'}/${id}/${name && name.toLocaleLowerCase().split(' ').join('-')}`;
   }
 }

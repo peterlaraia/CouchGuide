@@ -23,10 +23,15 @@
     </li>
 
 
-    <li pvlTab [tabId]="'scheduleTab'" class="tab">
+    <li *ngIf="!showCancelled(show?.status)" pvlTab [tabId]="'scheduleTab'" class="tab">
       Schedule
       <ng-template>
-        <cg-schedule [time]="show?.schedule?.time" [days]="show?.schedule?.days" [timezone]="show?.network?.country?.timezone"></cg-schedule>
+        <cg-handshake *ngIf="!show?.schedule?.time">
+          <span left>Release Date</span> <span right>{{show?.premiered}}</span>
+        </cg-handshake>
+        <cg-schedule *ngIf="show?.schedule?.time" [time]="show?.schedule?.time" 
+          [days]="show?.schedule?.days" 
+          [timezone]="show?.network?.country?.timezone || show?.webChannel?.country?.timezone"></cg-schedule>
       </ng-template>
     </li>
 
@@ -34,7 +39,11 @@
     <li pvlTab [tabId]="'infoTab'" class="tab">
       Info
       <ng-template>
-        <cg-misc-info [runtime]="show?.runtime" [genres]="show?.genres" [network]="show?.network"></cg-misc-info>
+        <cg-misc-info 
+          [runtime]="show?.runtime" 
+          [genres]="show?.genres" 
+          [network]="show?.network || show?.webChannel"
+          [isWebchannel]="!!show?.webChannel"></cg-misc-info>
       </ng-template>
     </li>
 

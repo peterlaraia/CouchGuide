@@ -19,7 +19,7 @@ export interface Show {
     rating?: Rating;
     weight?: number;
     network?: Network;
-    webChannel?: string;
+    webChannel?: Network;
     externals?: Externals;
     image?: ImageLinks;
     summary?: string;
