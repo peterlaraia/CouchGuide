@@ -1,5 +1,5 @@
-<h3>{{show?.name}}</h3>
-<div class="show-container">
+<div *ngIf="$show | async; let show" class="show-container">
+  <h3>{{show?.name}}</h3>
 
   <ul class="tabs" pvlTabGroup [tabPanel]="showPanel">
 
@@ -23,15 +23,18 @@
     </li>
 
 
-    <li *ngIf="!showCancelled(show?.status)" pvlTab [tabId]="'scheduleTab'" class="tab">
+    <li pvlTab [tabId]="'scheduleTab'" class="tab">
       Schedule
       <ng-template>
-        <cg-handshake *ngIf="!show?.schedule?.time">
-          <span left>Release Date</span> <span right>{{show?.premiered}}</span>
-        </cg-handshake>
-        <cg-schedule *ngIf="show?.schedule?.time" [time]="show?.schedule?.time" 
-          [days]="show?.schedule?.days" 
-          [timezone]="show?.network?.country?.timezone || show?.webChannel?.country?.timezone"></cg-schedule>
+        <div class="show-schedule">
+          <cg-handshake>
+            <span left>Status</span><span right>{{show?.status}}</span>
+          </cg-handshake>
+          <cg-next-episode *ngIf="$upcomingEpisode | async; let episode" [episode]="episode"></cg-next-episode>
+          <cg-schedule *ngIf="show?.schedule?.time" [time]="show?.schedule?.time" 
+            [days]="show?.schedule?.days" 
+            [timezone]="show?.network?.country?.timezone || show?.webChannel?.country?.timezone"></cg-schedule>
+        </div>
       </ng-template>
     </li>
 

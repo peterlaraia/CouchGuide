@@ -10,6 +10,7 @@ import { ShowService } from './services/show.service';
 import { ShowResolver } from './services/show-resolver.service';
 import { SharedModule } from '../shared/shared.module';
 import { ShowEffects } from "./store/show-effects";
+import { NextEpisodeComponent } from './next-episode/next-episode.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { ShowEffects } from "./store/show-effects";
     RouterModule.forChild(showRoutes),
     SharedModule
   ],
-  declarations: [ShowComponent],
+  declarations: [ShowComponent, NextEpisodeComponent],
   providers: [EpisodeService, ShowService, ShowResolver]
 })
 export class ShowModule { }
