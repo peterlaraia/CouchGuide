@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Show } from '../../models/show';
-import { Episode } from "../../models/episode";
+import { Episode } from '../../models/episode';
 
 export const FETCH_SHOW = '[Show] Fetch Show';
 export const FETCH_EP = '[Show] Fetch Episode';

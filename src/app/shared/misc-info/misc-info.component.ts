@@ -38,6 +38,7 @@ export class MiscInfoComponent {
   }
 
   networkUrl(id: number, name: string, webChannel?: boolean): string {
-    return `${environment.maze_web_url}/${webChannel ? 'webchannels' : 'networks'}/${id}/${name && name.toLocaleLowerCase().split(' ').join('-')}`;
+    const cleanName: string = name && name.toLocaleLowerCase().split(' ').join('-');
+    return `${environment.maze_web_url}/${webChannel ? 'webchannels' : 'networks'}/${id}/${cleanName}`;
   }
 }

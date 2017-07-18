@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
-import { Observable } from "rxjs/Observable";
-import { Episode } from "../../models/episode";
-import { environment } from "environments/environment";
+import { Observable } from 'rxjs/Observable';
+import { Episode } from '../../models/episode';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class EpisodeService {

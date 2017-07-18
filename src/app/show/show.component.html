@@ -28,11 +28,10 @@
       <ng-template>
         <div class="show-schedule">
           <cg-handshake>
-            <span left>Status</span><span right>{{show?.status}}</span>
+            <span left>Show Status</span><span right>{{show?.status}}</span>
           </cg-handshake>
           <cg-next-episode *ngIf="$upcomingEpisode | async; let episode" [episode]="episode"></cg-next-episode>
-          <cg-schedule *ngIf="show?.schedule?.time" [time]="show?.schedule?.time" 
-            [days]="show?.schedule?.days" 
+          <cg-schedule *ngIf="show?.schedule?.time" [schedule]="show?.schedule" 
             [timezone]="show?.network?.country?.timezone || show?.webChannel?.country?.timezone"></cg-schedule>
         </div>
       </ng-template>

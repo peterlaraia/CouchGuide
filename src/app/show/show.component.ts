@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import { ShowStatus } from "../enums/show-status";
+import { ShowStatus } from '../enums/show-status';
 import { Show } from '../models/show';
 import { Episode } from '../models/episode';
 import * as showActions from './store/show-actions';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./show.component.scss', './show.component.small.scss', './show.component.large.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShowComponent {
+export class ShowComponent implements OnInit, OnDestroy {
 
   $show: Observable<Show>;
   $loading: Observable<boolean>;
@@ -33,20 +33,20 @@ export class ShowComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      console.log('params', params);
       this.store.dispatch(new showActions.FetchShow(params['id']));
     });
 
     this.showSub = this.$show.subscribe((show: Show) => {
-      console.log('show', show);
       if (show && show._links && show._links.nextepisode) {
         this.store.dispatch(new showActions.FetchEpisode(show._links.nextepisode.href));
-      }     
+      }
     });
   }
 
   ngOnDestroy() {
-    this.showSub && this.showSub.unsubscribe();
+    if (this.showSub) {
+      this.showSub.unsubscribe();
+    }
   }
 
 }

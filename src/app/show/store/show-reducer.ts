@@ -1,6 +1,6 @@
 import { Show } from '../../models/show';
 import * as Actions from './show-actions';
-import { Episode } from "app/models/episode";
+import { Episode } from 'app/models/episode';
 
 export interface State {
     show: Show;
@@ -39,7 +39,7 @@ export function reducer(state = initialState, action: Actions.All): State {
             return {
                 ...state,
                 loadingEp: true
-            }
+            };
         }
 
         case Actions.RETRIEVED_EP: {
@@ -47,7 +47,7 @@ export function reducer(state = initialState, action: Actions.All): State {
                 ...state,
                 nextEpisode: action.payload,
                 loadingEp: false
-            }
+            };
         }
 
         default: {

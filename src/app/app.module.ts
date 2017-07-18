@@ -8,14 +8,15 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { environment } from 'environments/environment';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 import { reducers } from './store/reducers';
 
-
 let imports: any[] = [
   BrowserModule,
+  CoreModule,
   FormsModule,
   HttpModule,
   HomeModule,

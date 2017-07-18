@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Episode } from "../../models/episode";
+import { Episode } from '../../models/episode';
 
 @Component({
   selector: 'cg-next-episode',
@@ -16,7 +16,7 @@ export class NextEpisodeComponent {
   }
 
   displayAirtime(timestamp: string): string {
-    let date: Date = new Date(timestamp);
+    const date: Date = new Date(timestamp);
     return `${date.toDateString()} at ${date.toLocaleTimeString()}`;
   }
 }

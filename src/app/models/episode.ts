@@ -1,7 +1,7 @@
-import { Links } from "./links";
+import { Links } from './links';
 
 export interface Episode {
-    id: number,
+    id: number;
     url?: string;
     name?: string;
     season?: number;
