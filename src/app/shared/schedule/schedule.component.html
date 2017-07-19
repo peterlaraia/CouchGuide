@@ -1,5 +1,5 @@
 <div class="week">
-  <div class="day-of-week" *ngFor="let day of scheduleService.week" [class.on-schedule]="isDayInSchedule(day, localSchedule?.days)">
+  <div class="day-of-week" *ngFor="let day of week" [class.on-schedule]="isDayInSchedule(day, localSchedule?.days)">
     <div class="day">{{day | slice:0:3}}</div>
     <div *ngIf="isDayInSchedule(day, localSchedule?.days)" class="time">{{localSchedule?.time}}</div>
   </div>

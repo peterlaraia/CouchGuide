@@ -11,8 +11,8 @@ export class EpisodeService {
 
   constructor(private http: Http) { }
 
-  getEpisode(id: number) {
-    this.getEpisodeByUrl(`${environment.maze_api_url}/episodes/${id}`);
+  getEpisode(id: number): Observable<Episode> {
+    return this.getEpisodeByUrl(`${environment.maze_api_url}/episodes/${id}`);
   }
 
   getEpisodeByUrl(url: string): Observable<Episode> {

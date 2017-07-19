@@ -1,4 +1,4 @@
-<div *ngIf="$show | async; let show" class="show-container">
+<div *ngIf="show$ | async; let show" class="show-container">
   <h3>{{show?.name}}</h3>
 
   <ul class="tabs" pvlTabGroup [tabPanel]="showPanel">
@@ -30,7 +30,7 @@
           <cg-handshake>
             <span left>Show Status</span><span right>{{show?.status}}</span>
           </cg-handshake>
-          <cg-next-episode *ngIf="$upcomingEpisode | async; let episode" [episode]="episode"></cg-next-episode>
+          <cg-next-episode *ngIf="upcomingEpisode$ | async; let episode" [episode]="episode"></cg-next-episode>
           <cg-schedule *ngIf="show?.schedule?.time" [schedule]="show?.schedule" 
             [timezone]="show?.network?.country?.timezone || show?.webChannel?.country?.timezone"></cg-schedule>
         </div>

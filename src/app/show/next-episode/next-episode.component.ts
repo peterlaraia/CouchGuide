@@ -12,11 +12,8 @@ export class NextEpisodeComponent {
   @Input() loading: boolean;
 
   displayEpisodeNumber(season: number, num: number): string {
-    return `S${season} E${num}`;
-  }
-
-  displayAirtime(timestamp: string): string {
-    const date: Date = new Date(timestamp);
-    return `${date.toDateString()} at ${date.toLocaleTimeString()}`;
+    const s = `${season === undefined || season === null ? '' : 'S' + season}`;
+    const e = `${num === undefined || num === null ? '' : 'E' + num}`;
+    return `${s} ${e}`.trim();
   }
 }

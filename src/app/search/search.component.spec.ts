@@ -24,10 +24,10 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.provideStore({ search: searchReducer }),
         ReactiveFormsModule,
         RouterTestingModule,
-        SharedModule
+        SharedModule,
+        StoreModule.provideStore({ search: searchReducer }),
       ],
       declarations: [
         SearchComponent,
@@ -41,10 +41,6 @@ describe('SearchComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
     store = de.injector.get(Store);
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   describe('onInit', () => {

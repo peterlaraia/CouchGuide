@@ -18,17 +18,17 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ShowComponent implements OnInit, OnDestroy {
 
-  $show: Observable<Show>;
-  $loading: Observable<boolean>;
-  $loadingEpisode: Observable<boolean>;
-  $upcomingEpisode: Observable<Episode>;
+  show$: Observable<Show>;
+  loading$: Observable<boolean>;
+  loadingEpisode$: Observable<boolean>;
+  upcomingEpisode$: Observable<Episode>;
   private showSub: Subscription;
 
   constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
-    this.$show = this.store.select(fromRoot.show);
-    this.$upcomingEpisode = this.store.select(fromRoot.upcomingEpisode);
-    this.$loading = this.store.select(fromRoot.loadingShow);
-    this.$loadingEpisode = this.store.select(fromRoot.loadingUpcomingEp);
+    this.show$ = this.store.select(fromRoot.show);
+    this.upcomingEpisode$ = this.store.select(fromRoot.upcomingEpisode);
+    this.loading$ = this.store.select(fromRoot.loadingShow);
+    this.loadingEpisode$ = this.store.select(fromRoot.loadingUpcomingEp);
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class ShowComponent implements OnInit, OnDestroy {
       this.store.dispatch(new showActions.FetchShow(params['id']));
     });
 
-    this.showSub = this.$show.subscribe((show: Show) => {
+    this.showSub = this.show$.subscribe((show: Show) => {
       if (show && show._links && show._links.nextepisode) {
         this.store.dispatch(new showActions.FetchEpisode(show._links.nextepisode.href));
       }

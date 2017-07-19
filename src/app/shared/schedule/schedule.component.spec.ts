@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScheduleComponent } from './schedule.component';
+import { ScheduleService } from '../../core/schedule/schedule.service';
 
 describe('ScheduleComponent', () => {
   let component: ScheduleComponent;
@@ -8,15 +9,29 @@ describe('ScheduleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScheduleComponent ]
+      declarations: [ScheduleComponent],
+      providers: [ScheduleService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ScheduleComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+  });
+
+  describe('onChanges()', () => {
+    it('should recalculate the schedule', () => {
+      const spy = spyOn(fixture.debugElement.injector.get(ScheduleService), 'recalculateSchedule');
+      component.schedule = {
+        time: '21:00'
+      };
+      component.timezone = 'America/Denver';
+      expect(spy.calls.count()).toBe(0);
+      component.ngOnChanges();
+      expect(spy.calls.count()).toBe(1);
+      expect(spy.calls.mostRecent().args).toEqual([{time: '21:00'}, 'America/Denver']);
+    });
   });
 
   describe('isDayInSchedule()', () => {
@@ -33,9 +48,5 @@ describe('ScheduleComponent', () => {
       expect(component.isDayInSchedule('Mon', null)).toBeFalsy();
       expect(component.isDayInSchedule(null, ['Friday'])).toBeFalsy();
     });
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
   });
 });

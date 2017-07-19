@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
 
-import { ScheduleService } from '../../core/timezone/timezone.service';
+import { ScheduleService } from '../../core/schedule/schedule.service';
 import { Schedule } from '../../models/schedule';
 
 @Component({
@@ -19,6 +19,10 @@ export class ScheduleComponent implements OnChanges {
 
   get date(): Date {
     return new Date();
+  }
+
+  get week(): string[] {
+    return this.scheduleService.week;
   }
 
   ngOnChanges() {

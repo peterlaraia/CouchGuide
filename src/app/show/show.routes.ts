@@ -1,14 +1,10 @@
 import { Routes } from '@angular/router';
 
 import { ShowComponent } from './show.component';
-import { ShowResolver } from './services/show-resolver.service';
 
 export const showRoutes: Routes = [
     {
         path: '',
-        component: ShowComponent,
-        resolve: {
-            show: ShowResolver
-        }
+        component: ShowComponent
     }
 ];

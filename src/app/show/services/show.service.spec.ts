@@ -11,7 +11,7 @@ import {
 } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { Show } from '../models/show';
+import { Show } from '../../models/show';
 import { ShowService } from './show.service';
 
 describe('ShowService', () => {

@@ -19,13 +19,11 @@ describe('ResultsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([
-          { path: 'shows/:id', component: ShowComponent },
         ]),
         SharedModule
       ],
       declarations: [
         ResultsComponent,
-        ShowComponent
       ]
     })
       .compileComponents();
