@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { StoreModule, Store } from '@ngrx/store';
-
+import { CoreModule } from '../core/core.module';
 import { ResultsComponent } from './results/results.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
@@ -28,6 +28,7 @@ describe('SearchComponent', () => {
         RouterTestingModule,
         SharedModule,
         StoreModule.provideStore({ search: searchReducer }),
+        CoreModule
       ],
       declarations: [
         SearchComponent,

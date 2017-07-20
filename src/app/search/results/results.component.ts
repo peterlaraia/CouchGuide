@@ -2,6 +2,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Show } from '../../models/show';
+import { SslService } from '../../core/ssl/ssl.service';
 
 @Component({
   selector: 'cg-results',
@@ -13,7 +14,7 @@ export class ResultsComponent {
 
   @Input() shows: Show[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public sslService: SslService) { }
 
   navigateTo(id: number): void {
     this.router.navigate(['/shows', id]);

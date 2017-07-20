@@ -13,11 +13,12 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { EpisodeService } from './episode.service';
 import { Episode } from '../../models/episode';
+import { CoreModule } from '../../core/core.module';
 
 describe('EpisodeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule],
+      imports: [HttpModule, CoreModule],
       providers: [
         EpisodeService,
         { provide: XHRBackend, useClass: MockBackend }

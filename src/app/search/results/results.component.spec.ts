@@ -4,9 +4,10 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ResultsComponent } from './results.component';
 import { appRoutes } from '../../app.routes';
+import { CoreModule } from '../../core/core.module';
 import { Show } from '../../models/show';
+import { ResultsComponent } from './results.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ShowComponent } from '../../show/show.component';
 
@@ -20,7 +21,8 @@ describe('ResultsComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
         ]),
-        SharedModule
+        SharedModule,
+        CoreModule
       ],
       declarations: [
         ResultsComponent,

@@ -7,7 +7,7 @@
       Summary
       <ng-template>
         <div class="show-image" *ifMediaQuery="'(min-width: 725px)'">
-          <img *ngIf="show?.image?.medium; else noImg; let img" [src]="img" />
+          <img *ngIf="show?.image?.medium; else noImg; let img" [src]="sslService.toHttps(img)" />
           <ng-template #noImg>
             <div class="no-img">
               No Image

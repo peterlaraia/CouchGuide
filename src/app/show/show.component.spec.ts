@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { Store, StoreModule } from '@ngrx/store';
 import { NgTabModule } from '@pevil/ng-tabs';
+import { CoreModule } from '../core/core.module';
 import { Show } from '../models/show';
 import { NextEpisodeComponent } from './next-episode/next-episode.component';
 import { Observable } from 'rxjs/Observable';
@@ -27,7 +28,8 @@ describe('ShowComponent', () => {
         RouterTestingModule,
         NgTabModule,
         SharedModule,
-        StoreModule.provideStore({show: reducer})
+        StoreModule.provideStore({show: reducer}),
+        CoreModule
       ],
       declarations: [ShowComponent, NextEpisodeComponent]
     }).compileComponents();

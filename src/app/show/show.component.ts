@@ -9,6 +9,7 @@ import * as showActions from './store/show-actions';
 import * as fromRoot from '../store/reducers';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { SslService } from '../core/ssl/ssl.service';
 
 @Component({
   selector: 'cg-show',
@@ -24,7 +25,7 @@ export class ShowComponent implements OnInit, OnDestroy {
   upcomingEpisode$: Observable<Episode>;
   private showSub: Subscription;
 
-  constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
+  constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>, public sslService: SslService) {
     this.show$ = this.store.select(fromRoot.show);
     this.upcomingEpisode$ = this.store.select(fromRoot.upcomingEpisode);
     this.loading$ = this.store.select(fromRoot.loadingShow);
