@@ -61,10 +61,14 @@ nav {
 }
 
 footer {
-    font-size: 1.1rem;
+    font-size: .9rem;
     display: flex;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-between;
+    padding: 8px;
+
+    a {
+        color: inherit;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -81,5 +85,9 @@ footer {
             padding-right: $padding-x/2;
             font-size: 14px; 
         }
+    }
+
+    footer {
+        font-size: .7rem;
     }
 }
