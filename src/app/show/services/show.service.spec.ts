@@ -1,48 +1,33 @@
 import { TestBed, inject } from '@angular/core/testing';
-import {
-  BaseRequestOptions,
-  ConnectionBackend,
-  Headers,
-  HttpModule,
-  RequestMethod,
-  Response,
-  ResponseOptions,
-  XHRBackend
-} from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+import { environment } from 'environments/environment';
 import { Show } from '../../models/show';
 import { ShowService } from './show.service';
 
 describe('ShowService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule],
-      providers: [
-        ShowService,
-        { provide: XHRBackend, useClass: MockBackend }
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [ShowService]
     });
   });
 
   describe('getShow()', () => {
-    it('should retrieve a show', inject([ShowService, XHRBackend],
-      (service: ShowService, backend: MockBackend) => {
+    it('should retrieve a show', inject([ShowService, HttpTestingController],
+      (service: ShowService, httpMock: HttpTestingController) => {
         const show = {
           id: 1, name: 'television show'
         };
 
-        backend.connections.subscribe((c: MockConnection) => {
-          expect(c.request.url).toContain('/shows/1');
-          expect(c.request.method).toBe(RequestMethod.Get);
-          c.mockRespond(new Response(new ResponseOptions({
-            body: JSON.stringify(show)
-          })));
-        });
-
         service.getShow(1).subscribe((tvShow: Show) => {
           expect(tvShow).toEqual(show);
         });
+
+        const req = httpMock.expectOne(`${environment.maze_api_url}/shows/1`);
+        expect(req.request.method).toEqual('GET');
+        req.flush(show);
+        httpMock.verify();
       }));
   });
 });

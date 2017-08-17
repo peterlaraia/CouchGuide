@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http, Response} from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -9,11 +9,10 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class ShowService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getShow(id: number): Observable<Show> {
-    return this.http.get(`${environment.maze_api_url}/shows/${id}`)
-      .map((res: Response) => res.json());
+    return this.http.get<Show>(`${environment.maze_api_url}/shows/${id}`);
   }
 
 }

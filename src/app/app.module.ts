@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
@@ -18,7 +18,7 @@ let imports: any[] = [
   BrowserModule,
   CoreModule,
   FormsModule,
-  HttpModule,
+  HttpClientModule,
   HomeModule,
   RouterModule.forRoot(
     appRoutes,

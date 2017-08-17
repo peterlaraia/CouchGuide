@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptionsArgs, Response, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs/Observable';
@@ -14,14 +14,12 @@ interface SearchResult {
 @Injectable()
 export class SearchService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   search(query: string): Observable<Show[]> {
-    const params: URLSearchParams = new URLSearchParams();
-    params.append('q', query);
-    const options: RequestOptionsArgs = { search: params };
-    return this.http.get(`${environment.maze_api_url}/search/shows`, options)
-      .map((res: Response) => res.json())
+    return this.http.get<SearchResult[]>(`${environment.maze_api_url}/search/shows`, {
+      params: new HttpParams().set('q', query)
+    })
       .map((results: SearchResult[]) => results.map((result: SearchResult) => result.show));
   }
 
