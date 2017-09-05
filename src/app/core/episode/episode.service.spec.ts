@@ -50,4 +50,24 @@ describe('EpisodeService', () => {
         httpMock.verify();
       }));
   });
+
+  describe('getSchedule()', () => {
+    it('should fetch the schedule', inject([EpisodeService, HttpTestingController],
+      (service: EpisodeService, httpMock: HttpTestingController) => {
+        const episodes: Episode[] = [
+          {id: 1, name: 'ep1'},
+          {id: 2, name: 'ep2'},
+          {id: 3, name: 'ep3'}
+        ];
+
+        service.getSchedule(new Date('2016-03-18'), 'US').subscribe((eps: Episode[]) => {
+          expect(eps).toEqual(episodes);
+        });
+
+        const req = httpMock.expectOne(`http://api.tvmaze.com/schedule?date=2016-03-18&countrycode=US`);
+        expect(req.request.method).toEqual('GET');
+        req.flush(episodes);
+        httpMock.verify();
+      }));
+  });
 });

@@ -1,8 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { StoreModule } from '@ngrx/store';
+import { CoreModule } from '../core/core.module';
 import { HomeComponent } from './home.component';
+import { GuideModule } from './guide/guide.module';
+import { reducer as guideReducer } from './guide/store/guide-reducer';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -10,7 +15,13 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        GuideModule,
+        StoreModule.provideStore({guide: guideReducer}),
+        CoreModule
+      ],
       declarations: [ HomeComponent ]
     })
     .compileComponents();

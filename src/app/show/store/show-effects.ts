@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { Actions, Effect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
+import { EpisodeService } from '../../core/episode/episode.service';
+import { Episode } from '../../models/episode';
 import { Show } from '../../models/show';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
-
-import { Episode } from '../../models/episode';
-import { EpisodeService } from '../services/episode.service';
 import { ShowService } from '../services/show.service';
 import * as showActions from './show-actions';
 

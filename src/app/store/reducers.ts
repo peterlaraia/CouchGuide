@@ -1,14 +1,17 @@
+import * as fromGuide from '../home/guide/store/guide-reducer';
 import * as fromSearch from '../search/store/search-reducer';
 import * as fromShow from '../show/store/show-reducer';
 
 export interface State {
     search: fromSearch.State;
     show: fromShow.State;
+    guide: fromGuide.State;
 }
 
 export const reducers = {
     search: fromSearch.reducer,
-    show: fromShow.reducer
+    show: fromShow.reducer,
+    guide: fromGuide.reducer
 };
 
 /* Search Selectors */
@@ -35,4 +38,21 @@ export function show(state: State) {
 
 export function upcomingEpisode(state: State) {
     return state.show.nextEpisode;
+}
+
+/* Guide Selectors */
+export function guideLoading(state: State) {
+    return state.guide.loading;
+}
+
+export function guideDate(state: State) {
+    return state.guide.date;
+}
+
+export function guideCountry(state: State) {
+    return state.guide.country;
+}
+
+export function guideEpisodes(state: State) {
+    return state.guide.episodes;
 }
