@@ -1,4 +1,5 @@
 import { Links } from './links';
+import { Show } from "./show";
 
 export interface Episode {
     id: number;
@@ -12,5 +13,6 @@ export interface Episode {
     runtime?: number;
     image?: string;
     summary?: string;
+    show?: Show;
     _links?: Links;
 }

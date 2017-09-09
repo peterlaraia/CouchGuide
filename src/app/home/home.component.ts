@@ -11,6 +11,9 @@ export class HomeComponent {
 
   constructor(private router: Router) { }
 
+  /**
+   * @deprecated
+   */
   redirectToSearch(): void {
     this.router.navigate(['/search']);
   }

@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.network-row {
+    display: flex;
+    height: 64px;
+    border: 2px solid lightgrey;
+    margin-top: -2px;
+
+    .network-name {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        width: 96px;
+        height: 100%;
+        border: 1px solid grey;
+    }
+}
