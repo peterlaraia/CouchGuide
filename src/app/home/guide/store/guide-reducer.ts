@@ -6,13 +6,15 @@ export interface State {
     country: string;
     date: Date;
     episodes: Episode[];
+    timeSteps: string[];
 }
 
 const initialState: State = {
     loading: false,
     country: 'US',
     date: new Date(),
-    episodes: []
+    episodes: [],
+    timeSteps: []
 };
 
 export function reducer(state = initialState, action: Actions.All) {
@@ -24,6 +26,13 @@ export function reducer(state = initialState, action: Actions.All) {
                 date: action.payload.date,
                 country: action.payload.country
             };
+        }
+
+        case Actions.UPDATE_INTERVAL: {
+            return {
+                ...state,
+                timeSteps: action.payload
+            }
         }
 
         case Actions.RETRIEVED_GUIDE: {

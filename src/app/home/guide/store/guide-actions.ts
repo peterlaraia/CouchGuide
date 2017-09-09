@@ -2,8 +2,9 @@ import { Action } from '@ngrx/store';
 
 import { Episode } from '../../../models/episode';
 
-export const FETCH_GUIDE = '[Guide] Fetch Schedule';
-export const RETRIEVED_GUIDE = '[Guide] Retrieved Schedule';
+export const FETCH_GUIDE = '[Guide] Fetch Guide';
+export const RETRIEVED_GUIDE = '[Guide] Retrieved Guide';
+export const UPDATE_INTERVAL = '[Guide] Update Interval';
 
 export interface Query {
     date: Date;
@@ -17,6 +18,13 @@ export class FetchGuide {
     }
 }
 
+export class UpdateInterval {
+    readonly type = UPDATE_INTERVAL;
+
+    constructor(public payload: string[]) {
+    }
+}
+
 export class RetrievedGuide {
     readonly type = RETRIEVED_GUIDE;
 
@@ -24,4 +32,4 @@ export class RetrievedGuide {
     }
 }
 
-export type All = RetrievedGuide | FetchGuide;
+export type All = RetrievedGuide | FetchGuide | UpdateInterval;

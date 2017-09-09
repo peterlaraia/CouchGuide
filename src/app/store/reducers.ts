@@ -56,3 +56,7 @@ export function guideCountry(state: State) {
 export function guideEpisodes(state: State) {
     return state.guide.episodes;
 }
+
+export function guideTimeSteps(state: State) {
+    return state.guide.timeSteps;
+}

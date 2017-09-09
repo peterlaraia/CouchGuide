@@ -1,6 +1,17 @@
-<div *ngFor="let network of networks" class="network-row">
-    <div class="network-name">{{network}}</div>
-    <div class="network-guide-episodes">
+<div class="guide-row guide-header">
+    <div class="network">Network</div>
+    <div class="guide-row-content guide-timestamps">
+        <!-- <div class="guide-timestamp">17:00</div>
+        <div class="guide-timestamp">17:30</div>
+        <div class="guide-timestamp">18:00</div>
+        <div class="guide-timestamp">18:30</div>
+        <div class="guide-timestamp">19:00</div> -->
+        <div class="guide-timestamp" *ngFor="let timestamp of timesteps$ | async">{{timestamp}}</div>
+    </div>
+</div>
+<div *ngFor="let network of networks" class="guide-row">
+    <div class="network">{{network}}</div>
+    <div class="guide-row-content network-episodes">
 
     </div>
 </div>

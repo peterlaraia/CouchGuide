@@ -52,13 +52,13 @@ export class ScheduleService {
     };
   }
 
-  private buildTimeString(timeInMinutes: number): string {
+  public buildTimeString(timeInMinutes: number): string {
     const hours: number = Math.floor(timeInMinutes / 60);
     const minutes: number = timeInMinutes % 60;
     return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
   }
 
-  private timeStringToMinutes(time: string): number {
+  public timeStringToMinutes(time: string): number {
     const [hours, minutes] = time.split(':');
     return (+hours * 60) + +minutes;
   }
