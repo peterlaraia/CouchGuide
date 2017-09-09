@@ -12,6 +12,6 @@
 <div *ngFor="let network of networks" class="guide-row">
     <div class="network">{{network}}</div>
     <div class="guide-row-content network-episodes">
-
+        <cg-guide-slot [name]="guide[network][0]?.show?.name" [runtime]="guide[network][0]?.runtime"></cg-guide-slot>
     </div>
 </div>
