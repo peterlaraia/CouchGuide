@@ -14,10 +14,12 @@ export class GuideSlotComponent implements OnInit {
   @Input() name: string;
   @Input() runtime: number;
 
+  @HostBinding('style.left.%')
+  @Input() left: number;
+
   @HostBinding('style.width.%') width: number;
 
   ngOnInit(): void {
     this.width = (this.runtime/this.SLOT_LENGTH)*this.SLOT_SIZE;
   }
-
 }

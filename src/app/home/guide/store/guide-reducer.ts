@@ -1,11 +1,15 @@
 import * as Actions from './guide-actions';
 import { Episode } from '../../../models/episode';
 
+export type TvGuide = {[key: string]: Episode[]};
+
 export interface State {
     loading: boolean;
     country: string;
     date: Date;
     episodes: Episode[];
+    guide: TvGuide;
+    networks: string[];
     timeSteps: string[];
 }
 
@@ -14,6 +18,8 @@ const initialState: State = {
     country: 'US',
     date: new Date(),
     episodes: [],
+    guide: {},
+    networks: [],
     timeSteps: []
 };
 
@@ -32,6 +38,14 @@ export function reducer(state = initialState, action: Actions.All) {
             return {
                 ...state,
                 timeSteps: action.payload
+            }
+        }
+
+        case Actions.BUILD_TV_GUIDE: {
+            return {
+                ...state,
+                guide: action.payload,
+                networks: Object.keys(action.payload)
             }
         }
 

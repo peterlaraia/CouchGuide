@@ -1,53 +1,55 @@
-:host {
+.tv-guide {
     display: flex;
     flex-direction: column;
     width: 90%;
-}
+    margin: 0 auto;
 
-.guide-row {
-    display: flex;
-    height: 64px;
-    border: 2px solid lightgrey;
-    margin-top: -2px;
-
-    &.guide-header {
-        border: none;
-        height:48px;
-
+    .guide-row {
+        display: flex;
+        height: 64px;
+        border: 2px solid lightgrey;
+        margin-top: -2px;
+    
+        &.guide-header {
+            border: none;
+            height:48px;
+    
+            .network {
+                border-color: transparent;
+            }
+        }
+    
         .network {
-            border-color: transparent;
-        }
-    }
-
-    .network {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-        flex: 0 0 96px;
-        height: 100%;
-        border: 1px solid grey;
-        font-weight: bold;
-    }
-
-    .guide-timestamps {
-        display: flex;
-        //height: 100%;
-        align-items: center;
-        margin-left: 2px;
-
-        .guide-timestamp {
-            height: 100%;
-            flex: 1 1 20%;
             display: flex;
+            justify-content: center;
+            text-align: center;
             align-items: center;
-            padding-left: 4px;
+            flex: 0 0 96px;
+            height: 100%;
+            border: 1px solid grey;
+            font-weight: bold;
         }
-    }
-
-    .guide-row-content {
-        flex: 1 1 auto;
-        position: relative;
-        overflow:hidden;
+    
+        .guide-timestamps {
+            display: flex;
+            //height: 100%;
+            align-items: center;
+            margin-left: 2px;
+    
+            .guide-timestamp {
+                height: 100%;
+                flex: 1 1 20%;
+                display: flex;
+                align-items: center;
+                padding-left: 4px;
+            }
+        }
+    
+        .guide-row-content {
+            flex: 1 1 auto;
+            position: relative;
+            overflow:hidden;
+        }
     }
 }
+

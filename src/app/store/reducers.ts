@@ -57,6 +57,14 @@ export function guideEpisodes(state: State) {
     return state.guide.episodes;
 }
 
+export function guideEntity(state: State) {
+    return state.guide.guide;
+}
+
+export function guideNetworks(state: State) {
+    return state.guide.networks;
+}
+
 export function guideTimeSteps(state: State) {
     return state.guide.timeSteps;
 }

@@ -5,12 +5,13 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Episode } from '../../models/episode';
 import { environment } from '../../../environments/environment';
-import { SslService } from '../../core/ssl/ssl.service';
+import { SslService } from '../ssl/ssl.service';
+import { DateUtilsService } from "../date/date-utils.service";
 
 @Injectable()
 export class EpisodeService {
 
-  constructor(private http: HttpClient, private sslService: SslService) { }
+  constructor(private http: HttpClient, private sslService: SslService, private dateUtils: DateUtilsService) { }
 
   getEpisode(id: number): Observable<Episode> {
     return this.getEpisodeByUrl(`${environment.maze_api_url}/episodes/${id}`);
@@ -22,11 +23,11 @@ export class EpisodeService {
   }
 
   getSchedule(date = new Date(), country = 'US'): Observable<Episode[]> {
-    const isoStr = date.toISOString();
+    const isoStr = this.dateUtils.dateFromTimezoneOffset(date).toISOString();
     const dateStr = isoStr.substring(0, isoStr.indexOf('T'));
     console.log(dateStr);
     return this.http.get<Episode[]>(`${environment.maze_api_url}/schedule`, {
-      params: new HttpParams().set('date', dateStr).set('countrycode', country)
+      params: new HttpParams().set('date', dateStr).set('country', country)
     });
   }
 

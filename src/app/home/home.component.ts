@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../store/reducers';
+
 @Component({
   selector: 'cg-home',
   templateUrl: './home.component.html',
@@ -9,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private store: Store<fromRoot.State>) { }
 
   /**
    * @deprecated

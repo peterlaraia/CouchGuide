@@ -1,10 +1,12 @@
 import { Action } from '@ngrx/store';
 
+import { TvGuide } from './guide-reducer';
 import { Episode } from '../../../models/episode';
 
 export const FETCH_GUIDE = '[Guide] Fetch Guide';
 export const RETRIEVED_GUIDE = '[Guide] Retrieved Guide';
 export const UPDATE_INTERVAL = '[Guide] Update Interval';
+export const BUILD_TV_GUIDE = '[Guide] Build Guide';
 
 export interface Query {
     date: Date;
@@ -32,4 +34,11 @@ export class RetrievedGuide {
     }
 }
 
-export type All = RetrievedGuide | FetchGuide | UpdateInterval;
+export class BuildTvGuide {
+    readonly type = BUILD_TV_GUIDE;
+
+    constructor(public payload: TvGuide) {
+    }
+}
+
+export type All = RetrievedGuide | FetchGuide | UpdateInterval | BuildTvGuide;

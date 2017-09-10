@@ -1,17 +1,17 @@
-<div class="guide-row guide-header">
-    <div class="network">Network</div>
-    <div class="guide-row-content guide-timestamps">
-        <!-- <div class="guide-timestamp">17:00</div>
-        <div class="guide-timestamp">17:30</div>
-        <div class="guide-timestamp">18:00</div>
-        <div class="guide-timestamp">18:30</div>
-        <div class="guide-timestamp">19:00</div> -->
-        <div class="guide-timestamp" *ngFor="let timestamp of timesteps$ | async">{{timestamp}}</div>
+<div *ngIf="(networks$ | async).length && (guide$ | async); let guide" class="tv-guide">
+    <div class="guide-row guide-header">
+        <div class="network">Network</div>
+        <div class="guide-row-content guide-timestamps">
+            <div class="guide-timestamp" *ngFor="let timestamp of timesteps$ | async">{{timestamp}}</div>
+        </div>
     </div>
-</div>
-<div *ngFor="let network of networks" class="guide-row">
-    <div class="network">{{network}}</div>
-    <div class="guide-row-content network-episodes">
-        <cg-guide-slot [name]="guide[network][0]?.show?.name" [runtime]="guide[network][0]?.runtime"></cg-guide-slot>
+    <div *ngFor="let network of networks$ | async" class="guide-row">
+        <div class="network">{{network}}</div>
+        <div class="guide-row-content network-episodes">
+            <cg-guide-slot *ngFor="let episode of guide[network]" 
+                [name]="episode?.show?.name"
+                [runtime]="episode?.runtime"
+                [left]="calculateCssLeft((timesteps$ | async)[0], episode?.airtime)" (click)="print(episode)"></cg-guide-slot>
+        </div>
     </div>
 </div>
