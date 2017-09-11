@@ -18,6 +18,9 @@ import * as fromRoot from '../../store/reducers';
 })
 export class GuideComponent implements OnInit {
 
+  private readonly SLOT_LENGTH_MINUTES: number = 30;
+  private readonly SLOT_WIDTH_PCT: number = 20;
+
   timesteps$: Observable<string[]>;
   guide$: Observable<TvGuide>;
   networks$: Observable<string[]>;
@@ -36,12 +39,26 @@ export class GuideComponent implements OnInit {
     }));
   }
 
-  calculateCssLeft(base: string, airtime: string): number {
+  calculateSlotLeft(base: string, airtime: string, runtime: number): number {
     const baseInMinutes: number = this.scheduleService.timeStringToMinutes(base);
-    const airtimeInMinutes: number = this.scheduleService.timeStringToMinutes(airtime);
+    let airtimeInMinutes: number = this.scheduleService.timeStringToMinutes(airtime);
+    if (airtimeInMinutes < baseInMinutes && airtimeInMinutes + runtime < baseInMinutes) {
+      airtimeInMinutes += this.scheduleService.MINUTES_PER_DAY;
+    }
     const diff: number = airtimeInMinutes - baseInMinutes;
-    const offset: number = diff/30;
-    return offset * 20;
+    const offset: number = diff/this.SLOT_LENGTH_MINUTES;
+    return offset * this.SLOT_WIDTH_PCT;
+  }
+
+  calculateSlotWidth(runtime: number, airtime: string, start: string): number {
+    const airtimeMinutes: number = this.scheduleService.timeStringToMinutes(airtime); //1410
+    const startMinutes: number = this.scheduleService.timeStringToMinutes(start);
+    const endMinutes: number = startMinutes + this.SLOT_LENGTH_MINUTES*5;
+
+    const from: number = Math.max(airtimeMinutes, startMinutes);
+    const to: number = Math.min(endMinutes, airtimeMinutes + runtime);
+    console.log(to-from, to, from, start, airtime, runtime);
+    return ((to - from)/this.SLOT_LENGTH_MINUTES) * this.SLOT_WIDTH_PCT;
   }
 
   print = console.log

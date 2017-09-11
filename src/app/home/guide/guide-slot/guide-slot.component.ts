@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '
   styleUrls: ['./guide-slot.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GuideSlotComponent implements OnInit {
+export class GuideSlotComponent {
 
   private readonly SLOT_SIZE: number = 20;
   private readonly SLOT_LENGTH: number = 30;
@@ -17,9 +17,6 @@ export class GuideSlotComponent implements OnInit {
   @HostBinding('style.left.%')
   @Input() left: number;
 
-  @HostBinding('style.width.%') width: number;
-
-  ngOnInit(): void {
-    this.width = (this.runtime/this.SLOT_LENGTH)*this.SLOT_SIZE;
-  }
+  @HostBinding('style.width.%') 
+  @Input() width: number;
 }

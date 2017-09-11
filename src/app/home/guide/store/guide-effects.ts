@@ -6,7 +6,6 @@ import { EpisodeService } from '../../../core/episode/episode.service';
 import { ScheduleService } from '../../../core/schedule/schedule.service';
 import * as guideActions from './guide-actions';
 import { TvGuide } from "./guide-reducer";
-import { GuideService } from "../guide.service";
 import { Episode } from '../../../models/episode';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -52,13 +51,18 @@ export class GuideEffects {
         private scheduleService: ScheduleService) { }
 
     filterByTime = (episodes: Episode[], start: number, end: number): Episode[] => {
+        console.log(episodes.length);
         const filtered: Episode[] = episodes.filter((episode: Episode) => {
-            const timeInMinutes: number = this.scheduleService.timeStringToMinutes(episode.airtime);
-            console.log(start, timeInMinutes, end);
+            const epStart: number = this.scheduleService.timeStringToMinutes(episode.airtime);
+            let epEnd: number = epStart + episode.runtime;
+            // if (epEnd > this.scheduleService.MINUTES_PER_DAY) {
+            //     epEnd -= this.scheduleService.MINUTES_PER_DAY;
+            // }
+            console.log(start, epStart, epEnd, end);
             if (start < end) {
-                return timeInMinutes >= start && timeInMinutes < end;
+                return (epStart >= start && epStart < end) || (epEnd >= start && epEnd < end);
             } else {
-                return timeInMinutes >= start || timeInMinutes < end;
+                return (epStart >= start || epStart < end) || (epEnd >= start || epEnd < end);
             }
         });
         

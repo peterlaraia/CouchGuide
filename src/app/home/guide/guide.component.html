@@ -11,7 +11,9 @@
             <cg-guide-slot *ngFor="let episode of guide[network]" 
                 [name]="episode?.show?.name"
                 [runtime]="episode?.runtime"
-                [left]="calculateCssLeft((timesteps$ | async)[0], episode?.airtime)" (click)="print(episode)"></cg-guide-slot>
+                [left]="calculateSlotLeft((timesteps$ | async)[0], episode?.airtime, episode?.runtime)" 
+                [width]="calculateSlotWidth(episode?.runtime, episode?.airtime, (timesteps$ | async)[0], (timesteps$ | async)[(timesteps$ | async).length - 1])"
+                (click)="print(episode)"></cg-guide-slot>
         </div>
     </div>
 </div>

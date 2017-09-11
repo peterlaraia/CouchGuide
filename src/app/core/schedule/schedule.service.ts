@@ -4,8 +4,8 @@ import { Schedule } from '../../models/schedule';
 @Injectable()
 export class ScheduleService {
 
-  private static readonly MILLIS_PER_MINUTE: number = 60 * 1000;
-  private static readonly MINUTES_PER_DAY: number = 24 * 60;
+  readonly MILLIS_PER_MINUTE: number = 60 * 1000;
+  readonly MINUTES_PER_DAY: number = 24 * 60;
 
   private readonly WEEK: string[] = [
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
@@ -24,7 +24,7 @@ export class ScheduleService {
     const browserDate: Date = new Date();
     const givenTzDate: Date = new Date(browserDate.toLocaleString('en-US', {timeZone: timezone}));
 
-    const offsetInMinutes: number = Math.floor((browserDate.getTime() - givenTzDate.getTime()) / ScheduleService.MILLIS_PER_MINUTE);
+    const offsetInMinutes: number = Math.floor((browserDate.getTime() - givenTzDate.getTime()) / this.MILLIS_PER_MINUTE);
     const base: number = this.timeStringToMinutes(schedule.time);
 
     const updatedTimeInMinutes: number = base + offsetInMinutes;
@@ -34,13 +34,13 @@ export class ScheduleService {
 
   private reconstructSchedule(minutes: number, days: string[]): Schedule {
     if (minutes < 0) {
-      const timeInMinutes: number = (ScheduleService.MINUTES_PER_DAY + minutes);
+      const timeInMinutes: number = (this.MINUTES_PER_DAY + minutes);
       return {
         time: this.buildTimeString(timeInMinutes),
         days: this.shiftBackwards(days)
       };
-    } else if (minutes > ScheduleService.MINUTES_PER_DAY) {
-      const timeInMinutes: number = (minutes % ScheduleService.MINUTES_PER_DAY);
+    } else if (minutes > this.MINUTES_PER_DAY) {
+      const timeInMinutes: number = (minutes % this.MINUTES_PER_DAY);
       return {
         time: this.buildTimeString(timeInMinutes),
         days: this.shiftForwards(days)
