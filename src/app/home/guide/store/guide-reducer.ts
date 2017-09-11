@@ -10,7 +10,7 @@ export interface State {
     episodes: Episode[];
     guide: TvGuide;
     networks: string[];
-    timeSteps: string[];
+    timeSteps: Date[];
 }
 
 const initialState: State = {

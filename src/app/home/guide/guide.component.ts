@@ -21,7 +21,7 @@ export class GuideComponent implements OnInit {
   private readonly SLOT_LENGTH_MINUTES: number = 30;
   private readonly SLOT_WIDTH_PCT: number = 20;
 
-  timesteps$: Observable<string[]>;
+  timesteps$: Observable<Date[]>;
   guide$: Observable<TvGuide>;
   networks$: Observable<string[]>;
 

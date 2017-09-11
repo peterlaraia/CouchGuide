@@ -23,7 +23,7 @@ export class FetchGuide {
 export class UpdateInterval {
     readonly type = UPDATE_INTERVAL;
 
-    constructor(public payload: string[]) {
+    constructor(public payload: Date[]) {
     }
 }
 

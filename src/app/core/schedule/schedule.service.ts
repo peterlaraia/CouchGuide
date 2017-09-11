@@ -52,20 +52,16 @@ export class ScheduleService {
     };
   }
 
-  public getIntervalSteps(base: string, numSteps: number): string[] {
-    let minutes = this.timeStringToMinutes(base);
-    if (minutes % 30 !== 0) {
-      minutes = minutes + (30 - (minutes % 30));
-    }
-
-    const steps: string[] = [];
+  public getIntervalSteps(base: Date, numSteps: number): Date[] {
+    const baseSlot: Date = new Date(base.getTime() - (base.getTime() % (30*this.MILLIS_PER_MINUTE)));
+    const steps: Date[] = [];
+    let curr: Date = baseSlot;
     for (let i = 0; i < numSteps; i++) {
-      if (minutes >= 24 * 60) {
-        minutes -= 24 * 60;
-      }
-      steps.push(this.buildTimeString(minutes))
-      minutes += 30;
+      steps.push(curr);
+
+      curr = new Date(curr.getTime() + (30*this.MILLIS_PER_MINUTE));
     }
+    console.log('steps', steps);
     return steps;
   }
 

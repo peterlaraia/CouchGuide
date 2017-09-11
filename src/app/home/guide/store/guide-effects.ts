@@ -29,13 +29,13 @@ export class GuideEffects {
     retrievedGuide: Observable<Action> = this.actions.ofType(guideActions.RETRIEVED_GUIDE)
         .map((action: guideActions.RetrievedGuide) => action.payload)
         .map((episodes: Episode[]) => new guideActions.UpdateInterval(
-            this.scheduleService.getIntervalSteps(`${new Date().getHours()}:${new Date().getMinutes()}`, 5)
+            this.scheduleService.getIntervalSteps(new Date(), 5)
         ));
 
     @Effect()
     updateInterval: Observable<Action> = this.actions.ofType(guideActions.UPDATE_INTERVAL)
         .map((action: guideActions.UpdateInterval) => action.payload)
-        .map((timesteps: string[]) => timesteps.map(this.scheduleService.timeStringToMinutes))
+        //.map((timesteps: Date[]) => timesteps.map(this.scheduleService.timeStringToMinutes))
         .withLatestFrom(this.store.select(fromRoot.guideEpisodes))
         .map((guideInfo: any[]) => {
             const [timeSteps, episodes] = guideInfo;
