@@ -39,26 +39,22 @@ export class GuideComponent implements OnInit {
     }));
   }
 
-  calculateSlotLeft(base: string, airtime: string, runtime: number): number {
-    const baseInMinutes: number = this.scheduleService.timeStringToMinutes(base);
-    let airtimeInMinutes: number = this.scheduleService.timeStringToMinutes(airtime);
-    if (airtimeInMinutes < baseInMinutes && airtimeInMinutes + runtime < baseInMinutes) {
-      airtimeInMinutes += this.scheduleService.MINUTES_PER_DAY;
-    }
-    const diff: number = airtimeInMinutes - baseInMinutes;
-    const offset: number = diff/this.SLOT_LENGTH_MINUTES;
-    return offset * this.SLOT_WIDTH_PCT;
+  calculateSlotLeft(base: Date, airstamp: string, runtime: number): number {
+    const airDate: Date = new Date(airstamp);
+
+    const diff: number = airDate.getTime() - base.getTime();
+    const offset: number = diff/(this.SLOT_LENGTH_MINUTES*this.scheduleService.MILLIS_PER_MINUTE);
+    return Math.max(offset * this.SLOT_WIDTH_PCT, 0);
   }
 
-  calculateSlotWidth(runtime: number, airtime: string, start: string): number {
-    const airtimeMinutes: number = this.scheduleService.timeStringToMinutes(airtime); //1410
-    const startMinutes: number = this.scheduleService.timeStringToMinutes(start);
-    const endMinutes: number = startMinutes + this.SLOT_LENGTH_MINUTES*5;
-
-    const from: number = Math.max(airtimeMinutes, startMinutes);
-    const to: number = Math.min(endMinutes, airtimeMinutes + runtime);
-    console.log(to-from, to, from, start, airtime, runtime);
-    return ((to - from)/this.SLOT_LENGTH_MINUTES) * this.SLOT_WIDTH_PCT;
+  calculateSlotWidth(runtime: number, airstamp: string, start: Date, end: Date): number {
+    const airDate: Date = new Date(airstamp);
+    const from: number = Math.max(airDate.getTime(), start.getTime());
+    const to: number = Math.min(
+      end.getTime() + this.SLOT_LENGTH_MINUTES*this.scheduleService.MILLIS_PER_MINUTE, 
+      airDate.getTime() + runtime*this.scheduleService.MILLIS_PER_MINUTE
+    );
+    return ((to-from)/(this.SLOT_LENGTH_MINUTES*this.scheduleService.MILLIS_PER_MINUTE)) * this.SLOT_WIDTH_PCT;
   }
 
   print = console.log

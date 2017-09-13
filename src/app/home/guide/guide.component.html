@@ -2,7 +2,7 @@
     <div class="guide-row guide-header">
         <div class="network">Network</div>
         <div class="guide-row-content guide-timestamps">
-            <div class="guide-timestamp" *ngFor="let timestamp of timesteps$ | async">{{timestamp}}</div>
+            <div class="guide-timestamp" *ngFor="let timestamp of timesteps$ | async">{{timestamp | date:'HH:mm'}}</div>
         </div>
     </div>
     <div *ngFor="let network of networks$ | async" class="guide-row">
@@ -11,8 +11,8 @@
             <cg-guide-slot *ngFor="let episode of guide[network]" 
                 [name]="episode?.show?.name"
                 [runtime]="episode?.runtime"
-                [left]="calculateSlotLeft((timesteps$ | async)[0], episode?.airtime, episode?.runtime)" 
-                [width]="calculateSlotWidth(episode?.runtime, episode?.airtime, (timesteps$ | async)[0], (timesteps$ | async)[(timesteps$ | async).length - 1])"
+                [left]="calculateSlotLeft((timesteps$ | async)[0], episode?.airstamp, episode?.runtime)" 
+                [width]="calculateSlotWidth(episode?.runtime, episode?.airstamp, (timesteps$ | async)[0], (timesteps$ | async)[(timesteps$ | async).length - 1])"
                 (click)="print(episode)"></cg-guide-slot>
         </div>
     </div>

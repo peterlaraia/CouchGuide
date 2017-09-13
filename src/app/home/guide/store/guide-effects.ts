@@ -50,20 +50,14 @@ export class GuideEffects {
         private episodeService: EpisodeService,
         private scheduleService: ScheduleService) { }
 
-    filterByTime = (episodes: Episode[], start: number, end: number): Episode[] => {
-        console.log(episodes.length);
+    filterByTime = (episodes: Episode[], start: Date, end: Date): Episode[] => {
         const filtered: Episode[] = episodes.filter((episode: Episode) => {
-            const epStart: number = this.scheduleService.timeStringToMinutes(episode.airtime);
-            let epEnd: number = epStart + episode.runtime;
-            // if (epEnd > this.scheduleService.MINUTES_PER_DAY) {
-            //     epEnd -= this.scheduleService.MINUTES_PER_DAY;
-            // }
-            console.log(start, epStart, epEnd, end);
-            if (start < end) {
-                return (epStart >= start && epStart < end) || (epEnd >= start && epEnd < end);
-            } else {
-                return (epStart >= start || epStart < end) || (epEnd >= start || epEnd < end);
-            }
+            const ep: Date = new Date(episode.airstamp);
+            const epStart: number = ep.getTime();
+            const epEnd: number = epStart + episode.runtime * this.scheduleService.MILLIS_PER_MINUTE;
+
+            return (epStart >= start.getTime() && epStart < end.getTime()) || 
+                (epEnd > start.getTime() && epEnd < end.getTime())
         });
         
         return filtered;
