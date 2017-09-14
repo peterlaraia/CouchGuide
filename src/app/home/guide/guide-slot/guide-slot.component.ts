@@ -11,6 +11,7 @@ export class GuideSlotComponent {
   private readonly SLOT_SIZE: number = 20;
   private readonly SLOT_LENGTH: number = 30;
 
+  @HostBinding('title')
   @Input() name: string;
   @Input() runtime: number;
 

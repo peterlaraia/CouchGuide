@@ -35,7 +35,6 @@ export class GuideEffects {
     @Effect()
     updateInterval: Observable<Action> = this.actions.ofType(guideActions.UPDATE_INTERVAL)
         .map((action: guideActions.UpdateInterval) => action.payload)
-        //.map((timesteps: Date[]) => timesteps.map(this.scheduleService.timeStringToMinutes))
         .withLatestFrom(this.store.select(fromRoot.guideEpisodes))
         .map((guideInfo: any[]) => {
             const [timeSteps, episodes] = guideInfo;

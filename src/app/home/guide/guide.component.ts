@@ -44,16 +44,14 @@ export class GuideComponent implements OnInit {
 
     const diff: number = airDate.getTime() - base.getTime();
     const offset: number = diff/(this.SLOT_LENGTH_MINUTES*this.scheduleService.MILLIS_PER_MINUTE);
-    return Math.max(offset * this.SLOT_WIDTH_PCT, 0);
+    return offset * this.SLOT_WIDTH_PCT;
   }
 
   calculateSlotWidth(runtime: number, airstamp: string, start: Date, end: Date): number {
     const airDate: Date = new Date(airstamp);
-    const from: number = Math.max(airDate.getTime(), start.getTime());
-    const to: number = Math.min(
-      end.getTime() + this.SLOT_LENGTH_MINUTES*this.scheduleService.MILLIS_PER_MINUTE, 
+    const from: number = airDate.getTime();
+    const to: number = 
       airDate.getTime() + runtime*this.scheduleService.MILLIS_PER_MINUTE
-    );
     return ((to-from)/(this.SLOT_LENGTH_MINUTES*this.scheduleService.MILLIS_PER_MINUTE)) * this.SLOT_WIDTH_PCT;
   }
 
