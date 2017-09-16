@@ -8,6 +8,7 @@ import * as guideActions from './guide-actions';
 import { TvGuide } from "./guide-reducer";
 import { Episode } from '../../../models/episode';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -21,13 +22,33 @@ export class GuideEffects {
     @Effect()
     fetchGuide: Observable<Action> = this.actions.ofType(guideActions.FETCH_GUIDE)
         .map((action: guideActions.FetchGuide) => action.payload)
-        .switchMap((query: guideActions.Query) => this.episodeService.getSchedule(query.date, query.country))
-        .map((episodes: Episode[]) => new guideActions.RetrievedGuide(episodes))
-        .catch((err: Error) => Observable.of(new guideActions.RetrievedGuide([]))); // TODO handle error gracefully
+        .switchMap((query: guideActions.Query) => {
+            return Observable.forkJoin(
+                Observable.of(query.after),
+                this.episodeService.getSchedule(query.date, query.country)
+            );
+        })
+        .map((result: any[]) => {
+            const [after, episodes] = result;
+            switch(after) {
+                case guideActions.OnGuideFetch.APPEND: {
+                    return new guideActions.AppendEpisodes(episodes);
+                }
+
+                case guideActions.OnGuideFetch.PREPEND: {
+                    return new guideActions.PrependEpisodes(episodes);
+                }
+
+                case guideActions.OnGuideFetch.REPLACE: default:  {
+                    return new guideActions.SetEpisodes(episodes);
+                }
+            }
+        })
+        .catch((err: Error) => Observable.of(new guideActions.SetEpisodes([]))); // TODO handle error gracefully
 
     @Effect()
-    retrievedGuide: Observable<Action> = this.actions.ofType(guideActions.RETRIEVED_GUIDE)
-        .map((action: guideActions.RetrievedGuide) => action.payload)
+    retrievedGuide: Observable<Action> = this.actions.ofType(guideActions.SET_EPISODES)
+        .map((action: guideActions.SetEpisodes) => action.payload)
         .map((episodes: Episode[]) => new guideActions.UpdateInterval(
             this.scheduleService.getIntervalSteps(new Date(), 5)
         ));
@@ -38,8 +59,8 @@ export class GuideEffects {
         .withLatestFrom(this.store.select(fromRoot.guideEpisodes))
         .map((guideInfo: any[]) => {
             const [timeSteps, episodes] = guideInfo;
-            const filteredEpisodes: Episode[] = this.filterByTime(episodes, timeSteps[0], timeSteps[timeSteps.length - 1]);
-            return new guideActions.BuildTvGuide(this.groupNetworks(filteredEpisodes))
+            //const filteredEpisodes: Episode[] = this.filterByTime(episodes, timeSteps[0], timeSteps[timeSteps.length - 1]);
+            return new guideActions.BuildTvGuide(this.groupNetworks(episodes))
         })
 
 

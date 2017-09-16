@@ -38,7 +38,7 @@ export function reducer(state = initialState, action: Actions.All) {
             return {
                 ...state,
                 timeSteps: action.payload
-            }
+            };
         }
 
         case Actions.BUILD_TV_GUIDE: {
@@ -46,14 +46,30 @@ export function reducer(state = initialState, action: Actions.All) {
                 ...state,
                 guide: action.payload,
                 networks: Object.keys(action.payload)
-            }
+            };
         }
 
-        case Actions.RETRIEVED_GUIDE: {
+        case Actions.SET_EPISODES: {
             return {
                 ...state,
                 loading: false,
                 episodes: action.payload
+            };
+        }
+
+        case Actions.APPEND_EPISODES: {
+            return {
+                ...state,
+                loading: false,
+                episodes: [...(state.episodes), ...(action.payload)]
+            };
+        }
+
+        case Actions.PREPEND_EPISODES: {
+            return {
+                ...state,
+                loading: false,
+                episodes: [...(action.payload), ...(state.episodes)]
             };
         }
 

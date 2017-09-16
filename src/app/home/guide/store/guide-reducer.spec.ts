@@ -28,7 +28,7 @@ describe('Guide Reducer', () => {
                 country: 'KR',
                 episodes: []
             };
-            const newState = reducer(prevState, new actions.RetrievedGuide([
+            const newState = reducer(prevState, new actions.SetEpisodes([
                 {id: 1, name: 'ep1'}, {id: 2, name: 'ep2'}
             ]));
             expect(newState).toEqual({

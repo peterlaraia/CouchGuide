@@ -35,7 +35,8 @@ export class GuideComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new guideActions.FetchGuide({
       date: new Date(),
-      country: 'US'
+      country: 'US',
+      after: guideActions.OnGuideFetch.REPLACE
     }));
   }
 
